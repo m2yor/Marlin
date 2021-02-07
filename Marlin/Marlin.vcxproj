@@ -1,0 +1,3007 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{C5F80730-F44F-4478-BDAE-6634EFC2CA88}</ProjectGuid>
+    <RootNamespace>
+    </RootNamespace>
+    <ProjectName>Marlin</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>
+    </PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>
+    </PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>
+    </PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>
+    </PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\Marlin;$(ProjectDir)..\..\..\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\Wire\src;$(ProjectDir)..\..\..\Program Files (x86)\Arduino\libraries\LiquidCrystal\src;$(ProjectDir)..\..\..\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\SPI\src;C:\Users\mayor\Documents\Arduino\libraries\TMC2130Stepper\src;$(ProjectDir)..\..\..\Program Files (x86)\Arduino\hardware\arduino\avr\cores\arduino;$(ProjectDir)..\..\..\Program Files (x86)\Arduino\hardware\arduino\avr\variants\mega;$(ProjectDir)..\..\..\Program Files (x86)\Arduino\hardware\tools\avr\\lib\gcc\avr\7.3.0\include;$(ProjectDir)..\..\..\Program Files (x86)\Arduino\hardware\tools\avr\avr\include;$(ProjectDir)..\..\..\Program Files (x86)\Arduino\hardware\tools\avr\\lib\gcc\avr\7.3.0\include;$(ProjectDir)..\..\..\Program Files (x86)\Arduino\hardware\tools\avr\avr\include-fixed;$(ProjectDir)..\..\..\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr;$(ProjectDir)..\..\..\Program Files (x86)\Arduino\hardware\tools\avr\lib\gcc\avr\4.9.2\include;$(ProjectDir)..\..\..\Program Files (x86)\Arduino\hardware\tools\avr\lib\gcc\avr\4.9.2\include;$(ProjectDir)..\..\..\Program Files (x86)\Arduino\hardware\tools\avr\lib\gcc\avr\4.9.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ProjectDir)__vm\.Marlin.vsarduino.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <PreprocessorDefinitions>__AVR_atmega2560__;__AVR_ATmega2560__;F_CPU=16000000L;ARDUINO=108013;ARDUINO_AVR_MEGA2560;ARDUINO_ARCH_AVR;__cplusplus=201103L;_VMICRO_INTELLISENSE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\Marlin;$(ProjectDir)..\..\..\Program Files (x86)\Arduino\hardware\arduino\avr\cores\arduino;$(ProjectDir)..\..\..\Program Files (x86)\Arduino\hardware\arduino\avr\variants\mega;$(ProjectDir)..\..\..\Program Files (x86)\Arduino\hardware\tools\avr\\lib\gcc\avr\7.3.0\include;$(ProjectDir)..\..\..\Program Files (x86)\Arduino\hardware\tools\avr\avr\include;$(ProjectDir)..\..\..\Program Files (x86)\Arduino\hardware\tools\avr\\lib\gcc\avr\7.3.0\include;$(ProjectDir)..\..\..\Program Files (x86)\Arduino\hardware\tools\avr\avr\include-fixed;$(ProjectDir)..\..\..\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr;$(ProjectDir)..\..\..\Program Files (x86)\Arduino\hardware\tools\avr\lib\gcc\avr\4.9.2\include;$(ProjectDir)..\..\..\Program Files (x86)\Arduino\hardware\tools\avr\lib\gcc\avr\4.9.2\include;$(ProjectDir)..\..\..\Program Files (x86)\Arduino\hardware\tools\avr\lib\gcc\avr\4.9.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ProjectDir)__vm\.Marlin.vsarduino.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
+      <PreprocessorDefinitions>__AVR_atmega2560__;__AVR_ATmega2560__;F_CPU=16000000L;ARDUINO=108013;ARDUINO_AVR_MEGA2560;ARDUINO_ARCH_AVR;__cplusplus=201103L;_VMICRO_INTELLISENSE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectCapability Include="VisualMicro" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Marlin.ino">
+      <FileType>CppCode</FileType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Configuration.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="Configuration_adv.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\core\boards.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\core\debug_out.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\core\drivers.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\core\language.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\core\macros.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\core\millis_t.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\core\multi_language.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\core\serial.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\core\types.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\core\utility.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\feature\babystep.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\feature\backlash.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\feature\baricuda.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\feature\bedlevel\abl\abl.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\feature\bedlevel\bedlevel.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\feature\bedlevel\mbl\mesh_bed_leveling.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\feature\bedlevel\ubl\ubl.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\feature\binary_protocol.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\feature\bltouch.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\feature\cancel_object.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\feature\caselight.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\feature\closedloop.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\feature\controllerfan.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\feature\dac\dac_dac084s085.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\feature\dac\dac_mcp4728.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\feature\dac\stepper_dac.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\feature\digipot\digipot.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\feature\encoder_i2c.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\feature\e_parser.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\feature\fanmux.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\feature\filwidth.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\feature\fwretract.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\feature\host_actions.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\feature\joystick.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\feature\leds\blinkm.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\feature\leds\leds.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\feature\leds\neopixel.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\feature\leds\pca9632.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\feature\leds\printer_event_leds.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\feature\leds\tempstat.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\feature\max7219.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\feature\mixing.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\feature\mmu2\mmu2.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\feature\pause.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\feature\power.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\feature\powerloss.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\feature\probe_temp_comp.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\feature\runout.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\feature\snmm.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\feature\solenoid.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\feature\spindle_laser.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\feature\tmc_util.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\feature\touch\xpt2046.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\feature\twibus.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\feature\z_stepper_align.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\gcode\gcode.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\gcode\parser.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\gcode\queue.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\AVR\endstop_interrupts.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\AVR\fastio.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\AVR\fastio\fastio_1280.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\AVR\fastio\fastio_1281.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\AVR\fastio\fastio_168.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\AVR\fastio\fastio_644.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\AVR\fastio\fastio_AT90USB.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\AVR\HAL.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\AVR\inc\Conditionals_adv.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\AVR\inc\Conditionals_LCD.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\AVR\inc\Conditionals_post.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\AVR\inc\SanityCheck.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\AVR\MarlinSerial.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\AVR\math.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\AVR\pinsDebug.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\AVR\pinsDebug_plus_70.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\AVR\pinsDebug_Teensyduino.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\AVR\ServoTimers.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\AVR\spi_pins.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\AVR\watchdog.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\DUE\dogm\u8g_com_HAL_DUE_sw_spi_shared.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\DUE\endstop_interrupts.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\DUE\fastio.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\DUE\fastio\G2_pins.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\DUE\fastio\G2_PWM.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\DUE\HAL.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\DUE\inc\Conditionals_adv.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\DUE\inc\Conditionals_LCD.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\DUE\inc\Conditionals_post.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\DUE\inc\SanityCheck.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\DUE\InterruptVectors.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\DUE\MarlinSerial.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\DUE\MarlinSerialUSB.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\DUE\pinsDebug.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\DUE\ServoTimers.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\DUE\spi_pins.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\DUE\timers.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\DUE\usb\arduino_due_x.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\DUE\usb\compiler.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\DUE\usb\conf_access.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\DUE\usb\conf_clock.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\DUE\usb\conf_usb.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\DUE\usb\ctrl_access.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\DUE\usb\genclk.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\DUE\usb\mrepeat.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\DUE\usb\osc.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\DUE\usb\pll.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\DUE\usb\preprocessor.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\DUE\usb\sbc_protocol.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\DUE\usb\sd_mmc_spi_mem.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\DUE\usb\spc_protocol.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\DUE\usb\stringz.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\DUE\usb\sysclk.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\DUE\usb\tpaste.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\DUE\usb\udc.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\DUE\usb\udc_desc.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\DUE\usb\udd.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\DUE\usb\udi.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\DUE\usb\udi_cdc.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\DUE\usb\udi_cdc_conf.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\DUE\usb\udi_msc.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\DUE\usb\uotghs_device_due.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\DUE\usb\uotghs_otg.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\DUE\usb\usb_protocol.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\DUE\usb\usb_protocol_cdc.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\DUE\usb\usb_protocol_msc.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\DUE\usb\usb_task.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\DUE\watchdog.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\ESP32\endstop_interrupts.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\ESP32\fastio.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\ESP32\FlushableHardwareSerial.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\ESP32\HAL.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\ESP32\i2s.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\ESP32\inc\Conditionals_adv.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\ESP32\inc\Conditionals_LCD.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\ESP32\inc\Conditionals_post.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\ESP32\inc\SanityCheck.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\ESP32\ota.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\ESP32\Servo.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\ESP32\servotimers.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\ESP32\spiffs.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\ESP32\spi_pins.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\ESP32\timers.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\ESP32\watchdog.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\ESP32\web.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\ESP32\WebSocketSerial.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\ESP32\wifi.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\HAL.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\LINUX\fastio.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\LINUX\HAL.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\LINUX\hardware\Clock.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\LINUX\hardware\Gpio.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\LINUX\hardware\Heater.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\LINUX\hardware\IOLoggerCSV.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\LINUX\hardware\LinearAxis.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\LINUX\hardware\Timer.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\LINUX\include\Arduino.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\LINUX\include\pinmapping.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\LINUX\include\serial.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\LINUX\inc\Conditionals_adv.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\LINUX\inc\Conditionals_LCD.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\LINUX\inc\Conditionals_post.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\LINUX\inc\SanityCheck.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\LINUX\pinsDebug.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\LINUX\servo_private.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\LINUX\spi_pins.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\LINUX\timers.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\LINUX\watchdog.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\LPC1768\eeprom_api.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\LPC1768\endstop_interrupts.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\LPC1768\fastio.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\LPC1768\HAL.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\LPC1768\include\digipot_mcp4451_I2C_routines.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\LPC1768\include\i2c_util.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\LPC1768\include\SPI.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\LPC1768\inc\Conditionals_adv.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\LPC1768\inc\Conditionals_LCD.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\LPC1768\inc\Conditionals_post.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\LPC1768\inc\SanityCheck.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\LPC1768\MarlinSerial.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\LPC1768\pinsDebug.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\LPC1768\Servo.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\LPC1768\spi_pins.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\LPC1768\timers.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\LPC1768\u8g\LCD_defines.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\LPC1768\u8g\LCD_delay.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\LPC1768\u8g\LCD_I2C_routines.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\LPC1768\u8g\LCD_pin_routines.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\LPC1768\watchdog.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\platforms.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\SAMD51\endstop_interrupts.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\SAMD51\fastio.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\SAMD51\HAL.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\SAMD51\inc\Conditionals_adv.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\SAMD51\inc\Conditionals_LCD.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\SAMD51\inc\Conditionals_post.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\SAMD51\inc\SanityCheck.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\SAMD51\MarlinSerial_AGCM4.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\SAMD51\pinsDebug.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\SAMD51\QSPIFlash.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\SAMD51\SAMD51.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\SAMD51\ServoTimers.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\SAMD51\spi_pins.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\SAMD51\timers.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\SAMD51\watchdog.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\shared\backtrace\backtrace.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\shared\backtrace\unwarm.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\shared\backtrace\unwarmbytab.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\shared\backtrace\unwarmmem.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\shared\backtrace\unwinder.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\shared\backtrace\unwmemaccess.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\shared\Delay.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\shared\eeprom_api.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\shared\HAL_SPI.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\shared\HAL_ST7920.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\shared\Marduino.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\shared\math_32bit.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\shared\servo.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\shared\servo_private.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\STM32F1\endstop_interrupts.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\STM32F1\fastio.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\STM32F1\HAL.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\STM32F1\inc\Conditionals_adv.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\STM32F1\inc\Conditionals_LCD.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\STM32F1\inc\Conditionals_post.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\STM32F1\inc\SanityCheck.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\STM32F1\msc_sd.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\STM32F1\onboard_sd.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\STM32F1\pinsDebug.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\STM32F1\sdio.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\STM32F1\Servo.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\STM32F1\SoftwareSerial.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\STM32F1\SPI.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\STM32F1\spi_pins.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\STM32F1\timers.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\STM32F1\watchdog.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\STM32\endstop_interrupts.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\STM32\fastio.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\STM32\HAL.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\STM32\inc\Conditionals_adv.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\STM32\inc\Conditionals_LCD.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\STM32\inc\Conditionals_post.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\STM32\inc\SanityCheck.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\STM32\pinsDebug.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\STM32\pinsDebug_STM32duino.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\STM32\pinsDebug_STM32GENERIC.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\STM32\pins_Xref.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\STM32\Servo.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\STM32\SoftwareSerial.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\STM32\spi_pins.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\STM32\timers.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\STM32\watchdog.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\STM32_F4_F7\eeprom_emul.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\STM32_F4_F7\endstop_interrupts.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\STM32_F4_F7\fastio.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\STM32_F4_F7\HAL.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\STM32_F4_F7\inc\Conditionals_adv.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\STM32_F4_F7\inc\Conditionals_LCD.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\STM32_F4_F7\inc\Conditionals_post.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\STM32_F4_F7\inc\SanityCheck.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\STM32_F4_F7\pinsDebug.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\STM32_F4_F7\Servo.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\STM32_F4_F7\spi_pins.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\STM32_F4_F7\STM32F4\timers.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\STM32_F4_F7\STM32F7\timers.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\STM32_F4_F7\STM32F7\TMC2660.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\STM32_F4_F7\timers.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\STM32_F4_F7\watchdog.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\TEENSY31_32\endstop_interrupts.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\TEENSY31_32\fastio.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\TEENSY31_32\HAL.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\TEENSY31_32\inc\Conditionals_adv.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\TEENSY31_32\inc\Conditionals_LCD.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\TEENSY31_32\inc\Conditionals_post.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\TEENSY31_32\inc\SanityCheck.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\TEENSY31_32\pinsDebug.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\TEENSY31_32\Servo.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\TEENSY31_32\spi_pins.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\TEENSY31_32\timers.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\TEENSY31_32\watchdog.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\TEENSY35_36\endstop_interrupts.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\TEENSY35_36\fastio.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\TEENSY35_36\HAL.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\TEENSY35_36\inc\Conditionals_adv.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\TEENSY35_36\inc\Conditionals_LCD.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\TEENSY35_36\inc\Conditionals_post.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\TEENSY35_36\inc\SanityCheck.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\TEENSY35_36\pinsDebug.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\TEENSY35_36\Servo.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\TEENSY35_36\spi_pins.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\TEENSY35_36\timers.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\HAL\TEENSY35_36\watchdog.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\inc\Conditionals_adv.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\inc\Conditionals_LCD.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\inc\Conditionals_post.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\inc\MarlinConfig.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\inc\MarlinConfigPre.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\inc\SanityCheck.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\inc\Version.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\dogm\dogm_Bootscreen.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\dogm\dogm_Statusscreen.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\dogm\fontdata\fontdata_6x9_marlin.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\dogm\fontdata\fontdata_ISO10646_1.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\dogm\fontdata\langdata_an.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\dogm\fontdata\langdata_bg.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\dogm\fontdata\langdata_ca.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\dogm\fontdata\langdata_cz.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\dogm\fontdata\langdata_da.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\dogm\fontdata\langdata_de.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\dogm\fontdata\langdata_el.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\dogm\fontdata\langdata_el_gr.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\dogm\fontdata\langdata_en.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\dogm\fontdata\langdata_es.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\dogm\fontdata\langdata_eu.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\dogm\fontdata\langdata_fi.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\dogm\fontdata\langdata_fr.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\dogm\fontdata\langdata_gl.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\dogm\fontdata\langdata_hr.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\dogm\fontdata\langdata_it.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\dogm\fontdata\langdata_jp_kana.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\dogm\fontdata\langdata_ko_KR.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\dogm\fontdata\langdata_nl.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\dogm\fontdata\langdata_pl.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\dogm\fontdata\langdata_pt.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\dogm\fontdata\langdata_pt_br.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\dogm\fontdata\langdata_ru.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\dogm\fontdata\langdata_sk.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\dogm\fontdata\langdata_test.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\dogm\fontdata\langdata_tr.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\dogm\fontdata\langdata_uk.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\dogm\fontdata\langdata_vi.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\dogm\fontdata\langdata_zh_CN.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\dogm\fontdata\langdata_zh_TW.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\dogm\HAL_LCD_class_defines.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\dogm\HAL_LCD_com_defines.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\dogm\status_screen_lite_ST7920.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\dogm\u8g_fontutf8.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\dogm\ultralcd_DOGM.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\dogm\ultralcd_st7920_u8glib_rrd_AVR.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\dgus\DGUSDisplay.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\dgus\DGUSDisplayDef.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\dgus\DGUSVPVariable.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\dgus\fysetc\DGUSDisplayDef.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\dgus\hiprecy\DGUSDisplayDef.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\dgus\origin\DGUSDisplayDef.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\ftdi_eve_touch_ui\archim2-flash\flash_storage.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\ftdi_eve_touch_ui\archim2-flash\media_file_reader.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\ftdi_eve_touch_ui\compat.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\ftdi_eve_touch_ui\config.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\ftdi_eve_touch_ui\ftdi_eve_lib\basic\boards.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\ftdi_eve_touch_ui\ftdi_eve_lib\basic\commands.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\ftdi_eve_touch_ui\ftdi_eve_lib\basic\constants.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\ftdi_eve_touch_ui\ftdi_eve_lib\basic\display_list.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\ftdi_eve_touch_ui\ftdi_eve_lib\basic\ftdi_basic.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\ftdi_eve_touch_ui\ftdi_eve_lib\basic\registers_ft800.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\ftdi_eve_touch_ui\ftdi_eve_lib\basic\registers_ft810.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\ftdi_eve_touch_ui\ftdi_eve_lib\basic\resolutions.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\ftdi_eve_touch_ui\ftdi_eve_lib\basic\spi.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\ftdi_eve_touch_ui\ftdi_eve_lib\compat.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\ftdi_eve_touch_ui\ftdi_eve_lib\extended\bitmap_info.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\ftdi_eve_touch_ui\ftdi_eve_lib\extended\command_processor.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\ftdi_eve_touch_ui\ftdi_eve_lib\extended\dl_cache.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\ftdi_eve_touch_ui\ftdi_eve_lib\extended\event_loop.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\ftdi_eve_touch_ui\ftdi_eve_lib\extended\ftdi_extended.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\ftdi_eve_touch_ui\ftdi_eve_lib\extended\grid_layout.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\ftdi_eve_touch_ui\ftdi_eve_lib\extended\polygon.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\ftdi_eve_touch_ui\ftdi_eve_lib\extended\rgb_t.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\ftdi_eve_touch_ui\ftdi_eve_lib\extended\screen_types.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\ftdi_eve_touch_ui\ftdi_eve_lib\extended\sound_list.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\ftdi_eve_touch_ui\ftdi_eve_lib\extended\sound_player.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\ftdi_eve_touch_ui\ftdi_eve_lib\extended\text_box.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\ftdi_eve_touch_ui\ftdi_eve_lib\extended\tiny_timer.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\ftdi_eve_touch_ui\ftdi_eve_lib\extended\unicode\font_bitmaps.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\ftdi_eve_touch_ui\ftdi_eve_lib\extended\unicode\font_size_t.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\ftdi_eve_touch_ui\ftdi_eve_lib\extended\unicode\standard_char_set.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\ftdi_eve_touch_ui\ftdi_eve_lib\extended\unicode\unicode.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\ftdi_eve_touch_ui\ftdi_eve_lib\extended\unicode\western_char_set.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\ftdi_eve_touch_ui\ftdi_eve_lib\extended\unicode\western_char_set_bitmap_31.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\ftdi_eve_touch_ui\ftdi_eve_lib\extras\circular_progress.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\ftdi_eve_touch_ui\ftdi_eve_lib\extras\poly_ui.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\ftdi_eve_touch_ui\ftdi_eve_lib\ftdi_eve_lib.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\ftdi_eve_touch_ui\language\language.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\ftdi_eve_touch_ui\language\language_en.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\ftdi_eve_touch_ui\pin_mappings.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\bio_printer_ui_landscape.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\bio_printer_ui_portrait.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\screens.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\screen_data.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\string_format.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\ftdi_eve_touch_ui\theme\bitmaps.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\ftdi_eve_touch_ui\theme\colors.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\ftdi_eve_touch_ui\theme\fonts.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\ftdi_eve_touch_ui\theme\marlin_bootscreen_landscape.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\ftdi_eve_touch_ui\theme\marlin_bootscreen_portrait.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\ftdi_eve_touch_ui\theme\sounds.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\lib\ftdi_eve_touch_ui\theme\theme.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\extui\ui_api.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\fontutils.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\HD44780\ultralcd_HD44780.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\language\language_an.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\language\language_bg.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\language\language_ca.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\language\language_cz.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\language\language_da.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\language\language_de.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\language\language_el.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\language\language_el_gr.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\language\language_en.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\language\language_es.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\language\language_eu.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\language\language_fi.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\language\language_fr.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\language\language_gl.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\language\language_hr.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\language\language_it.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\language\language_jp_kana.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\language\language_ko_KR.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\language\language_nl.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\language\language_pl.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\language\language_pt.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\language\language_pt_br.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\language\language_ru.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\language\language_sk.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\language\language_test.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\language\language_tr.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\language\language_uk.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\language\language_vi.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\language\language_zh_CN.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\language\language_zh_TW.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\lcdprint.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\menu\game\brickout.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\menu\game\game.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\menu\game\invaders.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\menu\game\maze.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\menu\game\snake.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\menu\game\types.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\menu\menu.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\menu\menu_addon.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\menu\menu_mmu2.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\thermistornames.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\lcd\ultralcd.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\libs\bresenham.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\libs\buzzer.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\libs\circularqueue.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\libs\crc16.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\libs\duration_t.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\libs\heatshrink\heatshrink_common.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\libs\heatshrink\heatshrink_config.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\libs\heatshrink\heatshrink_decoder.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\libs\hex_print_routines.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\libs\L64XX\L64XX_Marlin.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\libs\least_squares_fit.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\libs\nozzle.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\libs\numtostr.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\libs\private_spi.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\libs\softspi.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\libs\stopwatch.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\libs\vector_3.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\MarlinCore.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\configuration_store.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\delta.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\endstops.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\motion.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\planner.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\planner_bezier.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\printcounter.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\probe.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\scara.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\servo.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\speed_lookuptable.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\stepper.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\stepper\indirection.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\stepper\L64xx.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\stepper\TMC26X.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\stepper\trinamic.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\temperature.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\thermistor\thermistors.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\thermistor\thermistor_1.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\thermistor\thermistor_10.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\thermistor\thermistor_1010.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\thermistor\thermistor_1047.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\thermistor\thermistor_11.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\thermistor\thermistor_110.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\thermistor\thermistor_12.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\thermistor\thermistor_13.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\thermistor\thermistor_147.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\thermistor\thermistor_15.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\thermistor\thermistor_18.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\thermistor\thermistor_2.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\thermistor\thermistor_20.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\thermistor\thermistor_201.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\thermistor\thermistor_202.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\thermistor\thermistor_21.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\thermistor\thermistor_3.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\thermistor\thermistor_331.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\thermistor\thermistor_332.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\thermistor\thermistor_4.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\thermistor\thermistor_5.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\thermistor\thermistor_501.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\thermistor\thermistor_51.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\thermistor\thermistor_512.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\thermistor\thermistor_52.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\thermistor\thermistor_55.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\thermistor\thermistor_6.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\thermistor\thermistor_60.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\thermistor\thermistor_61.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\thermistor\thermistor_66.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\thermistor\thermistor_666.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\thermistor\thermistor_67.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\thermistor\thermistor_7.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\thermistor\thermistor_70.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\thermistor\thermistor_71.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\thermistor\thermistor_75.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\thermistor\thermistor_8.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\thermistor\thermistor_9.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\thermistor\thermistor_99.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\thermistor\thermistor_998.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\thermistor\thermistor_999.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\module\tool_change.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\esp32\pins_E4D.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\esp32\pins_ESP32.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\esp32\pins_MRR_ESPA.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\esp32\pins_MRR_ESPE.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\linux\pins_RAMPS_LINUX.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\lpc1768\pins_AZSMZ_MINI.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\lpc1768\pins_BIQU_B300_V1.0.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\lpc1768\pins_BIQU_BQ111_A4.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\lpc1768\pins_BTT_SKR_common.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\lpc1768\pins_BTT_SKR_V1_1.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\lpc1768\pins_BTT_SKR_V1_3.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\lpc1768\pins_BTT_SKR_V1_4.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\lpc1768\pins_GMARSH_X6_REV1.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\lpc1768\pins_MKS_SBASE.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\lpc1768\pins_MKS_SGEN_L.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\lpc1768\pins_RAMPS_RE_ARM.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\lpc1768\pins_SELENA_COMPACT.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\lpc1769\pins_AZTEEG_X5_GT.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\lpc1769\pins_AZTEEG_X5_MINI.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\lpc1769\pins_AZTEEG_X5_MINI_WIFI.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\lpc1769\pins_BTT_SKR_V1_4_TURBO.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\lpc1769\pins_COHESION3D_MINI.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\lpc1769\pins_COHESION3D_REMIX.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\lpc1769\pins_MKS_SGEN.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\lpc1769\pins_SMOOTHIEBOARD.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\lpc1769\pins_TH3D_EZBOARD.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\mega\pins_CHEAPTRONIC.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\mega\pins_CHEAPTRONICv2.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\mega\pins_CNCONTROLS_11.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\mega\pins_CNCONTROLS_12.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\mega\pins_CNCONTROLS_15.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\mega\pins_EINSTART-S.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\mega\pins_ELEFU_3.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\mega\pins_GT2560_REV_A.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\mega\pins_GT2560_REV_A_PLUS.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\mega\pins_GT2560_V3.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\mega\pins_GT2560_V3_A20.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\mega\pins_GT2560_V3_MC2.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\mega\pins_HJC2560C_REV2.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\mega\pins_INTAMSYS40.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\mega\pins_LEAPFROG.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\mega\pins_LEAPFROG_XEED2015.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\mega\pins_MEGACONTROLLER.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\mega\pins_MEGATRONICS.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\mega\pins_MEGATRONICS_2.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\mega\pins_MEGATRONICS_3.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\mega\pins_MIGHTYBOARD_REVE.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\mega\pins_MINITRONICS.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\mega\pins_OVERLORD.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\mega\pins_PICA.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\mega\pins_PICAOLD.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\mega\pins_SILVER_GATE.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\mega\pins_WANHAO_ONEPLUS.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\pins.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\pinsDebug.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\pinsDebug_list.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\rambo\pins_EINSY_RAMBO.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\rambo\pins_EINSY_RETRO.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\rambo\pins_MINIRAMBO.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\rambo\pins_RAMBO.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\rambo\pins_SCOOVO_X9H.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_3DRAG.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_AZTEEG_X3.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_AZTEEG_X3_PRO.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_BAM_DICE_DUE.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_BIQU_KFB_2.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_BQ_ZUM_MEGA_3D.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_COPYMASTER_3D.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_DUPLICATOR_I3_PLUS.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_FELIX2.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_FORMBOT_RAPTOR.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_FORMBOT_RAPTOR2.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_FORMBOT_TREX2PLUS.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_FORMBOT_TREX3.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_FYSETC_F6_13.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_FYSETC_F6_14.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_K8200.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_K8400.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_K8800.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_MAKEBOARD_MINI.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_MKS_BASE_10.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_MKS_BASE_14.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_MKS_BASE_15.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_MKS_BASE_16.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_MKS_BASE_common.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_MKS_BASE_HEROIC.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_MKS_GEN_13.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_MKS_GEN_L.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_MKS_GEN_L_V2.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_RAMPS.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_RAMPS_13.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_RAMPS_CREALITY.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_RAMPS_DAGOMA.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_RAMPS_ENDER_4.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_RAMPS_OLD.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_RAMPS_PLUS.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_RIGIDBOARD.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_RIGIDBOARD_V2.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_RL200.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_RUMBA.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_RUMBA_RAISE3D.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_SAINSMART_2IN1.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_TANGO.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_TRIGORILLA_13.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_TRIGORILLA_14.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_TRONXY_V3_1_0.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_TT_OSCAR.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_ULTIMAIN_2.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_ULTIMAKER.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_ULTIMAKER_OLD.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_VORON.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_ZRIB_V20.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\ramps\pins_Z_BOLT_X_SERIES.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\samd\pins_RAMPS_144.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\sam\pins_ADSK.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\sam\pins_ALLIGATOR_R2.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\sam\pins_ARCHIM1.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\sam\pins_ARCHIM2.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\sam\pins_CNCONTROLS_15D.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\sam\pins_DUE3DOM.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\sam\pins_DUE3DOM_MINI.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\sam\pins_PRINTRBOARD_G2.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\sam\pins_RADDS.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\sam\pins_RAMPS4DUE.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\sam\pins_RAMPS_DUO.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\sam\pins_RAMPS_FD_V1.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\sam\pins_RAMPS_FD_V2.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\sam\pins_RAMPS_SMART.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\sam\pins_RURAMPS4D_11.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\sam\pins_RURAMPS4D_13.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\sam\pins_ULTRATRONICS_PRO.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\sanguino\pins_ANET_10.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\sanguino\pins_AZTEEG_X1.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\sanguino\pins_GEN3_MONOLITHIC.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\sanguino\pins_GEN3_PLUS.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\sanguino\pins_GEN6.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\sanguino\pins_GEN6_DELUXE.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\sanguino\pins_GEN7_12.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\sanguino\pins_GEN7_13.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\sanguino\pins_GEN7_14.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\sanguino\pins_GEN7_CUSTOM.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\sanguino\pins_MELZI.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\sanguino\pins_MELZI_CREALITY.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\sanguino\pins_MELZI_MAKR3D.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\sanguino\pins_MELZI_MALYAN.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\sanguino\pins_MELZI_TRONXY.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\sanguino\pins_OMCA.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\sanguino\pins_OMCA_A.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\sanguino\pins_SANGUINOLOLU_11.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\sanguino\pins_SANGUINOLOLU_12.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\sanguino\pins_SETHI.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\sanguino\pins_STB_11.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\sensitive_pins.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\stm32f1\pins_BTT_SKR_E3_DIP.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\stm32f1\pins_BTT_SKR_MINI_E3.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\stm32f1\pins_BTT_SKR_MINI_E3_V1_0.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\stm32f1\pins_BTT_SKR_MINI_E3_V1_2.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\stm32f1\pins_BTT_SKR_MINI_V1_1.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\stm32f1\pins_CHITU3D.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\stm32f1\pins_FYSETC_AIO_II.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\stm32f1\pins_FYSETC_CHEETAH.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\stm32f1\pins_FYSETC_CHEETAH_V12.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\stm32f1\pins_GTM32_MINI.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\stm32f1\pins_GTM32_MINI_A30.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\stm32f1\pins_GTM32_PRO_VB.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\stm32f1\pins_GTM32_REV_B.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\stm32f1\pins_JGAURORA_A5S_A1.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\stm32f1\pins_LONGER3D_LK.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\stm32f1\pins_MALYAN_M200.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\stm32f1\pins_MKS_ROBIN.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\stm32f1\pins_MKS_ROBIN_LITE.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\stm32f1\pins_MKS_ROBIN_LITE3.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\stm32f1\pins_MKS_ROBIN_MINI.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\stm32f1\pins_MKS_ROBIN_NANO.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\stm32f1\pins_MKS_ROBIN_PRO.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\stm32f1\pins_MORPHEUS.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\stm32f1\pins_STM32F1R.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\stm32f1\pins_STM3R_MINI.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\stm32f4\pins_ARMED.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\stm32f4\pins_BEAST.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\stm32f4\pins_BLACK_STM32F407VE.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\stm32f4\pins_BTT_BTT002_V1_0.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\stm32f4\pins_BTT_GTR_V1_0.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\stm32f4\pins_BTT_SKR_PRO_V1_1.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\stm32f4\pins_FLYF407ZG.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\stm32f4\pins_FYSETC_S6.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\stm32f4\pins_GENERIC_STM32F4.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\stm32f4\pins_LERDGE_K.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\stm32f4\pins_LERDGE_X.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\stm32f4\pins_MKS_ROBIN2.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\stm32f4\pins_RUMBA32_AUS3D.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\stm32f4\pins_RUMBA32_common.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\stm32f4\pins_RUMBA32_MKS.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\stm32f4\pins_STEVAL_3DP001V1.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\stm32f4\pins_VAKE403D.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\stm32f7\pins_REMRAM_V1.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\stm32f7\pins_THE_BORG.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\teensy2\pins_5DPRINT.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\teensy2\pins_BRAINWAVE.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\teensy2\pins_BRAINWAVE_PRO.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\teensy2\pins_PRINTRBOARD.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\teensy2\pins_PRINTRBOARD_REVF.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\teensy2\pins_SAV_MKI.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\teensy2\pins_TEENSY2.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\teensy2\pins_TEENSYLU.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\teensy3\pins_TEENSY31_32.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\pins\teensy3\pins_TEENSY35_36.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\sd\cardreader.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\sd\Sd2Card.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\sd\Sd2Card_sdio.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\sd\SdBaseFile.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\sd\SdFatConfig.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\sd\SdFatStructs.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\sd\SdFatUtil.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\sd\SdFile.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\sd\SdInfo.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\sd\SdVolume.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\sd\usb_flashdrive\lib-uhs2\address.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\sd\usb_flashdrive\lib-uhs2\confdescparser.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\sd\usb_flashdrive\lib-uhs2\hexdump.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\sd\usb_flashdrive\lib-uhs2\macros.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\sd\usb_flashdrive\lib-uhs2\masstorage.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\sd\usb_flashdrive\lib-uhs2\max3421e.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\sd\usb_flashdrive\lib-uhs2\message.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\sd\usb_flashdrive\lib-uhs2\parsetools.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\sd\usb_flashdrive\lib-uhs2\printhex.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\sd\usb_flashdrive\lib-uhs2\settings.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\sd\usb_flashdrive\lib-uhs2\Usb.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\sd\usb_flashdrive\lib-uhs2\UsbCore.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\sd\usb_flashdrive\lib-uhs2\usbhost.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\sd\usb_flashdrive\lib-uhs2\usb_ch9.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\sd\usb_flashdrive\lib-uhs3\dyn_SWI\dyn_SWI.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\sd\usb_flashdrive\lib-uhs3\dyn_SWI\SWI_INLINE.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\sd\usb_flashdrive\lib-uhs3\UHS_host\macro_logic.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\sd\usb_flashdrive\lib-uhs3\UHS_host\UHS_address.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\sd\usb_flashdrive\lib-uhs3\UHS_host\UHS_BULK_STORAGE\UHS_BULK_STORAGE.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\sd\usb_flashdrive\lib-uhs3\UHS_host\UHS_BULK_STORAGE\UHS_BULK_STORAGE_INLINE.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\sd\usb_flashdrive\lib-uhs3\UHS_host\UHS_BULK_STORAGE\UHS_SCSI.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\sd\usb_flashdrive\lib-uhs3\UHS_host\UHS_hexdump.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\sd\usb_flashdrive\lib-uhs3\UHS_host\UHS_host.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\sd\usb_flashdrive\lib-uhs3\UHS_host\UHS_host_INLINE.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\sd\usb_flashdrive\lib-uhs3\UHS_host\UHS_macros.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\sd\usb_flashdrive\lib-uhs3\UHS_host\UHS_message.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\sd\usb_flashdrive\lib-uhs3\UHS_host\UHS_printf_HELPER.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\sd\usb_flashdrive\lib-uhs3\UHS_host\UHS_printhex.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\sd\usb_flashdrive\lib-uhs3\UHS_host\UHS_settings.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\sd\usb_flashdrive\lib-uhs3\UHS_host\UHS_UNOFFICIAL_IDs.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\sd\usb_flashdrive\lib-uhs3\UHS_host\UHS_UsbCore.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\sd\usb_flashdrive\lib-uhs3\UHS_host\UHS_usbhost.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\sd\usb_flashdrive\lib-uhs3\UHS_host\UHS_usb_ch9.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\sd\usb_flashdrive\lib-uhs3\UHS_host\UHS_USB_IDs.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\sd\usb_flashdrive\lib-uhs3\UHS_host\UHS_util_INLINE.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\sd\usb_flashdrive\lib-uhs3\UHS_host\USB_HOST_SHIELD\UHS_max3421e.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\sd\usb_flashdrive\lib-uhs3\UHS_host\USB_HOST_SHIELD\USB_HOST_SHIELD.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\sd\usb_flashdrive\lib-uhs3\UHS_host\USB_HOST_SHIELD\USB_HOST_SHIELD_INLINE.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="src\sd\usb_flashdrive\Sd2Card_FlashDrive.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="Version.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="__vm\.Marlin.vsarduino.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\core\multi_language.cpp" />
+    <ClCompile Include="src\core\serial.cpp" />
+    <ClCompile Include="src\core\utility.cpp" />
+    <ClCompile Include="src\feature\babystep.cpp" />
+    <ClCompile Include="src\feature\backlash.cpp" />
+    <ClCompile Include="src\feature\baricuda.cpp" />
+    <ClCompile Include="src\feature\bedlevel\abl\abl.cpp" />
+    <ClCompile Include="src\feature\bedlevel\bedlevel.cpp" />
+    <ClCompile Include="src\feature\bedlevel\mbl\mesh_bed_leveling.cpp" />
+    <ClCompile Include="src\feature\bedlevel\ubl\ubl.cpp" />
+    <ClCompile Include="src\feature\bedlevel\ubl\ubl_G29.cpp" />
+    <ClCompile Include="src\feature\bedlevel\ubl\ubl_motion.cpp" />
+    <ClCompile Include="src\feature\binary_protocol.cpp" />
+    <ClCompile Include="src\feature\bltouch.cpp" />
+    <ClCompile Include="src\feature\cancel_object.cpp" />
+    <ClCompile Include="src\feature\caselight.cpp" />
+    <ClCompile Include="src\feature\closedloop.cpp" />
+    <ClCompile Include="src\feature\controllerfan.cpp" />
+    <ClCompile Include="src\feature\dac\dac_dac084s085.cpp" />
+    <ClCompile Include="src\feature\dac\dac_mcp4728.cpp" />
+    <ClCompile Include="src\feature\dac\stepper_dac.cpp" />
+    <ClCompile Include="src\feature\digipot\digipot_mcp4018.cpp" />
+    <ClCompile Include="src\feature\digipot\digipot_mcp4451.cpp" />
+    <ClCompile Include="src\feature\encoder_i2c.cpp" />
+    <ClCompile Include="src\feature\e_parser.cpp" />
+    <ClCompile Include="src\feature\fanmux.cpp" />
+    <ClCompile Include="src\feature\filwidth.cpp" />
+    <ClCompile Include="src\feature\fwretract.cpp" />
+    <ClCompile Include="src\feature\host_actions.cpp" />
+    <ClCompile Include="src\feature\joystick.cpp" />
+    <ClCompile Include="src\feature\leds\blinkm.cpp" />
+    <ClCompile Include="src\feature\leds\leds.cpp" />
+    <ClCompile Include="src\feature\leds\neopixel.cpp" />
+    <ClCompile Include="src\feature\leds\pca9632.cpp" />
+    <ClCompile Include="src\feature\leds\printer_event_leds.cpp" />
+    <ClCompile Include="src\feature\leds\tempstat.cpp" />
+    <ClCompile Include="src\feature\max7219.cpp" />
+    <ClCompile Include="src\feature\mixing.cpp" />
+    <ClCompile Include="src\feature\mmu2\mmu2.cpp" />
+    <ClCompile Include="src\feature\pause.cpp" />
+    <ClCompile Include="src\feature\power.cpp" />
+    <ClCompile Include="src\feature\powerloss.cpp" />
+    <ClCompile Include="src\feature\probe_temp_comp.cpp" />
+    <ClCompile Include="src\feature\runout.cpp" />
+    <ClCompile Include="src\feature\snmm.cpp" />
+    <ClCompile Include="src\feature\solenoid.cpp" />
+    <ClCompile Include="src\feature\spindle_laser.cpp" />
+    <ClCompile Include="src\feature\tmc_util.cpp" />
+    <ClCompile Include="src\feature\touch\xpt2046.cpp" />
+    <ClCompile Include="src\feature\twibus.cpp" />
+    <ClCompile Include="src\feature\z_stepper_align.cpp" />
+    <ClCompile Include="src\gcode\bedlevel\abl\G29.cpp" />
+    <ClCompile Include="src\gcode\bedlevel\abl\M421.cpp" />
+    <ClCompile Include="src\gcode\bedlevel\G26.cpp" />
+    <ClCompile Include="src\gcode\bedlevel\G42.cpp" />
+    <ClCompile Include="src\gcode\bedlevel\M420.cpp" />
+    <ClCompile Include="src\gcode\bedlevel\mbl\G29.cpp" />
+    <ClCompile Include="src\gcode\bedlevel\mbl\M421.cpp" />
+    <ClCompile Include="src\gcode\bedlevel\ubl\G29.cpp" />
+    <ClCompile Include="src\gcode\bedlevel\ubl\M421.cpp" />
+    <ClCompile Include="src\gcode\calibrate\G28.cpp" />
+    <ClCompile Include="src\gcode\calibrate\G33.cpp" />
+    <ClCompile Include="src\gcode\calibrate\G34_M422.cpp" />
+    <ClCompile Include="src\gcode\calibrate\G425.cpp" />
+    <ClCompile Include="src\gcode\calibrate\G76_M871.cpp" />
+    <ClCompile Include="src\gcode\calibrate\M100.cpp" />
+    <ClCompile Include="src\gcode\calibrate\M12.cpp" />
+    <ClCompile Include="src\gcode\calibrate\M425.cpp" />
+    <ClCompile Include="src\gcode\calibrate\M48.cpp" />
+    <ClCompile Include="src\gcode\calibrate\M665.cpp" />
+    <ClCompile Include="src\gcode\calibrate\M666.cpp" />
+    <ClCompile Include="src\gcode\calibrate\M852.cpp" />
+    <ClCompile Include="src\gcode\config\M200-M205.cpp" />
+    <ClCompile Include="src\gcode\config\M217.cpp" />
+    <ClCompile Include="src\gcode\config\M218.cpp" />
+    <ClCompile Include="src\gcode\config\M220.cpp" />
+    <ClCompile Include="src\gcode\config\M221.cpp" />
+    <ClCompile Include="src\gcode\config\M281.cpp" />
+    <ClCompile Include="src\gcode\config\M301.cpp" />
+    <ClCompile Include="src\gcode\config\M302.cpp" />
+    <ClCompile Include="src\gcode\config\M304.cpp" />
+    <ClCompile Include="src\gcode\config\M305.cpp" />
+    <ClCompile Include="src\gcode\config\M43.cpp" />
+    <ClCompile Include="src\gcode\config\M540.cpp" />
+    <ClCompile Include="src\gcode\config\M575.cpp" />
+    <ClCompile Include="src\gcode\config\M672.cpp" />
+    <ClCompile Include="src\gcode\config\M92.cpp" />
+    <ClCompile Include="src\gcode\control\M108_M112_M410.cpp" />
+    <ClCompile Include="src\gcode\control\M111.cpp" />
+    <ClCompile Include="src\gcode\control\M120_M121.cpp" />
+    <ClCompile Include="src\gcode\control\M17_M18_M84.cpp" />
+    <ClCompile Include="src\gcode\control\M211.cpp" />
+    <ClCompile Include="src\gcode\control\M226.cpp" />
+    <ClCompile Include="src\gcode\control\M280.cpp" />
+    <ClCompile Include="src\gcode\control\M3-M5.cpp" />
+    <ClCompile Include="src\gcode\control\M350_M351.cpp" />
+    <ClCompile Include="src\gcode\control\M380_M381.cpp" />
+    <ClCompile Include="src\gcode\control\M400.cpp" />
+    <ClCompile Include="src\gcode\control\M42.cpp" />
+    <ClCompile Include="src\gcode\control\M605.cpp" />
+    <ClCompile Include="src\gcode\control\M7-M9.cpp" />
+    <ClCompile Include="src\gcode\control\M80_M81.cpp" />
+    <ClCompile Include="src\gcode\control\M85.cpp" />
+    <ClCompile Include="src\gcode\control\M997.cpp" />
+    <ClCompile Include="src\gcode\control\M999.cpp" />
+    <ClCompile Include="src\gcode\control\T.cpp" />
+    <ClCompile Include="src\gcode\eeprom\M500-M504.cpp" />
+    <ClCompile Include="src\gcode\feature\advance\M900.cpp" />
+    <ClCompile Include="src\gcode\feature\baricuda\M126-M129.cpp" />
+    <ClCompile Include="src\gcode\feature\camera\M240.cpp" />
+    <ClCompile Include="src\gcode\feature\cancel\M486.cpp" />
+    <ClCompile Include="src\gcode\feature\caselight\M355.cpp" />
+    <ClCompile Include="src\gcode\feature\clean\G12.cpp" />
+    <ClCompile Include="src\gcode\feature\controllerfan\M710.cpp" />
+    <ClCompile Include="src\gcode\feature\digipot\M907-M910.cpp" />
+    <ClCompile Include="src\gcode\feature\filwidth\M404-M407.cpp" />
+    <ClCompile Include="src\gcode\feature\fwretract\G10_G11.cpp" />
+    <ClCompile Include="src\gcode\feature\fwretract\M207-M209.cpp" />
+    <ClCompile Include="src\gcode\feature\i2c\M260_M261.cpp" />
+    <ClCompile Include="src\gcode\feature\L6470\M122.cpp" />
+    <ClCompile Include="src\gcode\feature\L6470\M906.cpp" />
+    <ClCompile Include="src\gcode\feature\L6470\M916-918.cpp" />
+    <ClCompile Include="src\gcode\feature\leds\M150.cpp" />
+    <ClCompile Include="src\gcode\feature\leds\M7219.cpp" />
+    <ClCompile Include="src\gcode\feature\macro\M810-M819.cpp" />
+    <ClCompile Include="src\gcode\feature\mixing\M163-M165.cpp" />
+    <ClCompile Include="src\gcode\feature\mixing\M166.cpp" />
+    <ClCompile Include="src\gcode\feature\pause\G27.cpp" />
+    <ClCompile Include="src\gcode\feature\pause\G60.cpp" />
+    <ClCompile Include="src\gcode\feature\pause\G61.cpp" />
+    <ClCompile Include="src\gcode\feature\pause\M125.cpp" />
+    <ClCompile Include="src\gcode\feature\pause\M600.cpp" />
+    <ClCompile Include="src\gcode\feature\pause\M603.cpp" />
+    <ClCompile Include="src\gcode\feature\pause\M701_M702.cpp" />
+    <ClCompile Include="src\gcode\feature\powerloss\M1000.cpp" />
+    <ClCompile Include="src\gcode\feature\powerloss\M413.cpp" />
+    <ClCompile Include="src\gcode\feature\prusa_MMU2\M403.cpp" />
+    <ClCompile Include="src\gcode\feature\runout\M412.cpp" />
+    <ClCompile Include="src\gcode\feature\trinamic\M122.cpp" />
+    <ClCompile Include="src\gcode\feature\trinamic\M569.cpp" />
+    <ClCompile Include="src\gcode\feature\trinamic\M906.cpp" />
+    <ClCompile Include="src\gcode\feature\trinamic\M911-M914.cpp" />
+    <ClCompile Include="src\gcode\gcode.cpp" />
+    <ClCompile Include="src\gcode\geometry\G17-G19.cpp" />
+    <ClCompile Include="src\gcode\geometry\G53-G59.cpp" />
+    <ClCompile Include="src\gcode\geometry\G92.cpp" />
+    <ClCompile Include="src\gcode\geometry\M206_M428.cpp" />
+    <ClCompile Include="src\gcode\host\M110.cpp" />
+    <ClCompile Include="src\gcode\host\M113.cpp" />
+    <ClCompile Include="src\gcode\host\M114.cpp" />
+    <ClCompile Include="src\gcode\host\M115.cpp" />
+    <ClCompile Include="src\gcode\host\M118.cpp" />
+    <ClCompile Include="src\gcode\host\M119.cpp" />
+    <ClCompile Include="src\gcode\host\M16.cpp" />
+    <ClCompile Include="src\gcode\host\M876.cpp" />
+    <ClCompile Include="src\gcode\lcd\M0_M1.cpp" />
+    <ClCompile Include="src\gcode\lcd\M117.cpp" />
+    <ClCompile Include="src\gcode\lcd\M145.cpp" />
+    <ClCompile Include="src\gcode\lcd\M250.cpp" />
+    <ClCompile Include="src\gcode\lcd\M300.cpp" />
+    <ClCompile Include="src\gcode\lcd\M73.cpp" />
+    <ClCompile Include="src\gcode\motion\G0_G1.cpp" />
+    <ClCompile Include="src\gcode\motion\G2_G3.cpp" />
+    <ClCompile Include="src\gcode\motion\G4.cpp" />
+    <ClCompile Include="src\gcode\motion\G5.cpp" />
+    <ClCompile Include="src\gcode\motion\G80.cpp" />
+    <ClCompile Include="src\gcode\motion\M290.cpp" />
+    <ClCompile Include="src\gcode\parser.cpp" />
+    <ClCompile Include="src\gcode\probe\G30.cpp" />
+    <ClCompile Include="src\gcode\probe\G31_G32.cpp" />
+    <ClCompile Include="src\gcode\probe\G38.cpp" />
+    <ClCompile Include="src\gcode\probe\M401_M402.cpp" />
+    <ClCompile Include="src\gcode\probe\M851.cpp" />
+    <ClCompile Include="src\gcode\probe\M951.cpp" />
+    <ClCompile Include="src\gcode\queue.cpp" />
+    <ClCompile Include="src\gcode\scara\M360-M364.cpp" />
+    <ClCompile Include="src\gcode\sd\M1001.cpp" />
+    <ClCompile Include="src\gcode\sd\M20.cpp" />
+    <ClCompile Include="src\gcode\sd\M21_M22.cpp" />
+    <ClCompile Include="src\gcode\sd\M23.cpp" />
+    <ClCompile Include="src\gcode\sd\M24_M25.cpp" />
+    <ClCompile Include="src\gcode\sd\M26.cpp" />
+    <ClCompile Include="src\gcode\sd\M27.cpp" />
+    <ClCompile Include="src\gcode\sd\M28_M29.cpp" />
+    <ClCompile Include="src\gcode\sd\M30.cpp" />
+    <ClCompile Include="src\gcode\sd\M32.cpp" />
+    <ClCompile Include="src\gcode\sd\M33.cpp" />
+    <ClCompile Include="src\gcode\sd\M34.cpp" />
+    <ClCompile Include="src\gcode\sd\M524.cpp" />
+    <ClCompile Include="src\gcode\sd\M928.cpp" />
+    <ClCompile Include="src\gcode\stats\M31.cpp" />
+    <ClCompile Include="src\gcode\stats\M75-M78.cpp" />
+    <ClCompile Include="src\gcode\temp\M104_M109.cpp" />
+    <ClCompile Include="src\gcode\temp\M105.cpp" />
+    <ClCompile Include="src\gcode\temp\M106_M107.cpp" />
+    <ClCompile Include="src\gcode\temp\M140_M190.cpp" />
+    <ClCompile Include="src\gcode\temp\M141_M191.cpp" />
+    <ClCompile Include="src\gcode\temp\M155.cpp" />
+    <ClCompile Include="src\gcode\temp\M303.cpp" />
+    <ClCompile Include="src\gcode\units\G20_G21.cpp" />
+    <ClCompile Include="src\gcode\units\M149.cpp" />
+    <ClCompile Include="src\gcode\units\M82_M83.cpp" />
+    <ClCompile Include="src\HAL\AVR\eeprom.cpp" />
+    <ClCompile Include="src\HAL\AVR\fastio.cpp" />
+    <ClCompile Include="src\HAL\AVR\fast_pwm.cpp" />
+    <ClCompile Include="src\HAL\AVR\HAL.cpp" />
+    <ClCompile Include="src\HAL\AVR\HAL_SPI.cpp" />
+    <ClCompile Include="src\HAL\AVR\MarlinSerial.cpp" />
+    <ClCompile Include="src\HAL\AVR\Servo.cpp" />
+    <ClCompile Include="src\HAL\AVR\u8g_com_HAL_AVR_sw_spi.cpp" />
+    <ClCompile Include="src\HAL\AVR\watchdog.cpp" />
+    <ClCompile Include="src\HAL\DUE\DebugMonitor.cpp" />
+    <ClCompile Include="src\HAL\DUE\dogm\u8g_com_HAL_DUE_shared_hw_spi.cpp" />
+    <ClCompile Include="src\HAL\DUE\dogm\u8g_com_HAL_DUE_st7920_sw_spi.cpp" />
+    <ClCompile Include="src\HAL\DUE\dogm\u8g_com_HAL_DUE_sw_spi.cpp" />
+    <ClCompile Include="src\HAL\DUE\dogm\u8g_com_HAL_DUE_sw_spi_shared.cpp" />
+    <ClCompile Include="src\HAL\DUE\eeprom.cpp" />
+    <ClCompile Include="src\HAL\DUE\EepromEmulation.cpp" />
+    <ClCompile Include="src\HAL\DUE\fastio\G2_PWM.cpp" />
+    <ClCompile Include="src\HAL\DUE\HAL.cpp" />
+    <ClCompile Include="src\HAL\DUE\HAL_SPI.cpp" />
+    <ClCompile Include="src\HAL\DUE\InterruptVectors.cpp" />
+    <ClCompile Include="src\HAL\DUE\MarlinSerial.cpp" />
+    <ClCompile Include="src\HAL\DUE\MarlinSerialUSB.cpp" />
+    <ClCompile Include="src\HAL\DUE\Servo.cpp" />
+    <ClCompile Include="src\HAL\DUE\timers.cpp" />
+    <ClCompile Include="src\HAL\DUE\Tone.cpp" />
+    <ClCompile Include="src\HAL\DUE\usb\ctrl_access.c">
+      <FileType>CppCode</FileType>
+    </ClCompile>
+    <ClCompile Include="src\HAL\DUE\usb\sd_mmc_spi_mem.cpp" />
+    <ClCompile Include="src\HAL\DUE\usb\sysclk.c">
+      <FileType>CppCode</FileType>
+    </ClCompile>
+    <ClCompile Include="src\HAL\DUE\usb\udc.c">
+      <FileType>CppCode</FileType>
+    </ClCompile>
+    <ClCompile Include="src\HAL\DUE\usb\udi_cdc.c">
+      <FileType>CppCode</FileType>
+    </ClCompile>
+    <ClCompile Include="src\HAL\DUE\usb\udi_cdc_desc.c">
+      <FileType>CppCode</FileType>
+    </ClCompile>
+    <ClCompile Include="src\HAL\DUE\usb\udi_composite_desc.c">
+      <FileType>CppCode</FileType>
+    </ClCompile>
+    <ClCompile Include="src\HAL\DUE\usb\udi_msc.c">
+      <FileType>CppCode</FileType>
+    </ClCompile>
+    <ClCompile Include="src\HAL\DUE\usb\uotghs_device_due.c">
+      <FileType>CppCode</FileType>
+    </ClCompile>
+    <ClCompile Include="src\HAL\DUE\usb\usb_task.c">
+      <FileType>CppCode</FileType>
+    </ClCompile>
+    <ClCompile Include="src\HAL\DUE\watchdog.cpp" />
+    <ClCompile Include="src\HAL\ESP32\eeprom_impl.cpp" />
+    <ClCompile Include="src\HAL\ESP32\FlushableHardwareSerial.cpp" />
+    <ClCompile Include="src\HAL\ESP32\HAL.cpp" />
+    <ClCompile Include="src\HAL\ESP32\HAL_SPI.cpp" />
+    <ClCompile Include="src\HAL\ESP32\i2s.cpp" />
+    <ClCompile Include="src\HAL\ESP32\ota.cpp" />
+    <ClCompile Include="src\HAL\ESP32\Servo.cpp" />
+    <ClCompile Include="src\HAL\ESP32\spiffs.cpp" />
+    <ClCompile Include="src\HAL\ESP32\timers.cpp" />
+    <ClCompile Include="src\HAL\ESP32\watchdog.cpp" />
+    <ClCompile Include="src\HAL\ESP32\web.cpp" />
+    <ClCompile Include="src\HAL\ESP32\WebSocketSerial.cpp" />
+    <ClCompile Include="src\HAL\ESP32\wifi.cpp" />
+    <ClCompile Include="src\HAL\LINUX\arduino.cpp" />
+    <ClCompile Include="src\HAL\LINUX\eeprom_impl.cpp" />
+    <ClCompile Include="src\HAL\LINUX\HAL.cpp" />
+    <ClCompile Include="src\HAL\LINUX\hardware\Clock.cpp" />
+    <ClCompile Include="src\HAL\LINUX\hardware\Gpio.cpp" />
+    <ClCompile Include="src\HAL\LINUX\hardware\Heater.cpp" />
+    <ClCompile Include="src\HAL\LINUX\hardware\IOLoggerCSV.cpp" />
+    <ClCompile Include="src\HAL\LINUX\hardware\LinearAxis.cpp" />
+    <ClCompile Include="src\HAL\LINUX\hardware\Timer.cpp" />
+    <ClCompile Include="src\HAL\LINUX\include\pinmapping.cpp" />
+    <ClCompile Include="src\HAL\LINUX\main.cpp" />
+    <ClCompile Include="src\HAL\LINUX\timers.cpp" />
+    <ClCompile Include="src\HAL\LINUX\watchdog.cpp" />
+    <ClCompile Include="src\HAL\LPC1768\DebugMonitor.cpp" />
+    <ClCompile Include="src\HAL\LPC1768\eeprom_flash.cpp" />
+    <ClCompile Include="src\HAL\LPC1768\eeprom_sdcard.cpp" />
+    <ClCompile Include="src\HAL\LPC1768\fast_pwm.cpp" />
+    <ClCompile Include="src\HAL\LPC1768\HAL.cpp" />
+    <ClCompile Include="src\HAL\LPC1768\HAL_SPI.cpp" />
+    <ClCompile Include="src\HAL\LPC1768\include\digipot_mcp4451_I2C_routines.c">
+      <FileType>CppCode</FileType>
+    </ClCompile>
+    <ClCompile Include="src\HAL\LPC1768\include\i2c_util.c">
+      <FileType>CppCode</FileType>
+    </ClCompile>
+    <ClCompile Include="src\HAL\LPC1768\main.cpp" />
+    <ClCompile Include="src\HAL\LPC1768\MarlinSerial.cpp" />
+    <ClCompile Include="src\HAL\LPC1768\timers.cpp" />
+    <ClCompile Include="src\HAL\LPC1768\u8g\LCD_I2C_routines.cpp" />
+    <ClCompile Include="src\HAL\LPC1768\u8g\LCD_pin_routines.c">
+      <FileType>CppCode</FileType>
+    </ClCompile>
+    <ClCompile Include="src\HAL\LPC1768\u8g\u8g_com_HAL_LPC1768_hw_spi.cpp" />
+    <ClCompile Include="src\HAL\LPC1768\u8g\u8g_com_HAL_LPC1768_ssd_hw_i2c.cpp" />
+    <ClCompile Include="src\HAL\LPC1768\u8g\u8g_com_HAL_LPC1768_st7920_hw_spi.cpp" />
+    <ClCompile Include="src\HAL\LPC1768\u8g\u8g_com_HAL_LPC1768_st7920_sw_spi.cpp" />
+    <ClCompile Include="src\HAL\LPC1768\u8g\u8g_com_HAL_LPC1768_sw_spi.cpp" />
+    <ClCompile Include="src\HAL\LPC1768\usb_serial.cpp" />
+    <ClCompile Include="src\HAL\LPC1768\watchdog.cpp" />
+    <ClCompile Include="src\HAL\SAMD51\eeprom.cpp" />
+    <ClCompile Include="src\HAL\SAMD51\eeprom_flash.cpp" />
+    <ClCompile Include="src\HAL\SAMD51\eeprom_qspi.cpp" />
+    <ClCompile Include="src\HAL\SAMD51\HAL.cpp" />
+    <ClCompile Include="src\HAL\SAMD51\HAL_SPI.cpp" />
+    <ClCompile Include="src\HAL\SAMD51\MarlinSerial_AGCM4.cpp" />
+    <ClCompile Include="src\HAL\SAMD51\QSPIFlash.cpp" />
+    <ClCompile Include="src\HAL\SAMD51\Servo.cpp" />
+    <ClCompile Include="src\HAL\SAMD51\timers.cpp" />
+    <ClCompile Include="src\HAL\SAMD51\watchdog.cpp" />
+    <ClCompile Include="src\HAL\shared\backtrace\backtrace.cpp" />
+    <ClCompile Include="src\HAL\shared\backtrace\unwarm.cpp" />
+    <ClCompile Include="src\HAL\shared\backtrace\unwarmbytab.cpp" />
+    <ClCompile Include="src\HAL\shared\backtrace\unwarmmem.cpp" />
+    <ClCompile Include="src\HAL\shared\backtrace\unwarm_arm.cpp" />
+    <ClCompile Include="src\HAL\shared\backtrace\unwarm_thumb.cpp" />
+    <ClCompile Include="src\HAL\shared\backtrace\unwinder.cpp" />
+    <ClCompile Include="src\HAL\shared\backtrace\unwmemaccess.cpp" />
+    <ClCompile Include="src\HAL\shared\eeprom_api.cpp" />
+    <ClCompile Include="src\HAL\shared\eeprom_i2c.cpp" />
+    <ClCompile Include="src\HAL\shared\eeprom_spi.cpp" />
+    <ClCompile Include="src\HAL\shared\HAL_spi_L6470.cpp" />
+    <ClCompile Include="src\HAL\shared\servo.cpp" />
+    <ClCompile Include="src\HAL\STM32F1\dogm\u8g_com_stm32duino_fsmc.cpp" />
+    <ClCompile Include="src\HAL\STM32F1\dogm\u8g_com_stm32duino_swspi.cpp" />
+    <ClCompile Include="src\HAL\STM32F1\eeprom.cpp" />
+    <ClCompile Include="src\HAL\STM32F1\eeprom_flash.cpp" />
+    <ClCompile Include="src\HAL\STM32F1\eeprom_sdcard.cpp" />
+    <ClCompile Include="src\HAL\STM32F1\HAL.cpp" />
+    <ClCompile Include="src\HAL\STM32F1\HAL_SPI.cpp" />
+    <ClCompile Include="src\HAL\STM32F1\msc_sd.cpp" />
+    <ClCompile Include="src\HAL\STM32F1\onboard_sd.cpp" />
+    <ClCompile Include="src\HAL\STM32F1\sdio.cpp" />
+    <ClCompile Include="src\HAL\STM32F1\Servo.cpp" />
+    <ClCompile Include="src\HAL\STM32F1\SoftwareSerial.cpp" />
+    <ClCompile Include="src\HAL\STM32F1\SPI.cpp" />
+    <ClCompile Include="src\HAL\STM32F1\timers.cpp" />
+    <ClCompile Include="src\HAL\STM32F1\watchdog.cpp" />
+    <ClCompile Include="src\HAL\STM32\eeprom_flash.cpp" />
+    <ClCompile Include="src\HAL\STM32\eeprom_impl.cpp" />
+    <ClCompile Include="src\HAL\STM32\eeprom_sdcard.cpp" />
+    <ClCompile Include="src\HAL\STM32\fastio.cpp" />
+    <ClCompile Include="src\HAL\STM32\HAL.cpp" />
+    <ClCompile Include="src\HAL\STM32\HAL_SPI.cpp" />
+    <ClCompile Include="src\HAL\STM32\Sd2Card_sdio_stm32duino.cpp" />
+    <ClCompile Include="src\HAL\STM32\Servo.cpp" />
+    <ClCompile Include="src\HAL\STM32\SoftwareSerial.cpp" />
+    <ClCompile Include="src\HAL\STM32\timers.cpp" />
+    <ClCompile Include="src\HAL\STM32\watchdog.cpp" />
+    <ClCompile Include="src\HAL\STM32_F4_F7\eeprom.cpp" />
+    <ClCompile Include="src\HAL\STM32_F4_F7\eeprom_emul.cpp" />
+    <ClCompile Include="src\HAL\STM32_F4_F7\EmulatedEeprom.cpp" />
+    <ClCompile Include="src\HAL\STM32_F4_F7\HAL.cpp" />
+    <ClCompile Include="src\HAL\STM32_F4_F7\HAL_SPI.cpp" />
+    <ClCompile Include="src\HAL\STM32_F4_F7\Servo.cpp" />
+    <ClCompile Include="src\HAL\STM32_F4_F7\STM32F4\timers.cpp" />
+    <ClCompile Include="src\HAL\STM32_F4_F7\STM32F7\timers.cpp" />
+    <ClCompile Include="src\HAL\STM32_F4_F7\STM32F7\TMC2660.cpp" />
+    <ClCompile Include="src\HAL\STM32_F4_F7\watchdog.cpp" />
+    <ClCompile Include="src\HAL\TEENSY31_32\eeprom_impl.cpp" />
+    <ClCompile Include="src\HAL\TEENSY31_32\HAL.cpp" />
+    <ClCompile Include="src\HAL\TEENSY31_32\HAL_SPI.cpp" />
+    <ClCompile Include="src\HAL\TEENSY31_32\Servo.cpp" />
+    <ClCompile Include="src\HAL\TEENSY31_32\timers.cpp" />
+    <ClCompile Include="src\HAL\TEENSY31_32\watchdog.cpp" />
+    <ClCompile Include="src\HAL\TEENSY35_36\eeprom.cpp" />
+    <ClCompile Include="src\HAL\TEENSY35_36\HAL.cpp" />
+    <ClCompile Include="src\HAL\TEENSY35_36\HAL_SPI.cpp" />
+    <ClCompile Include="src\HAL\TEENSY35_36\Servo.cpp" />
+    <ClCompile Include="src\HAL\TEENSY35_36\timers.cpp" />
+    <ClCompile Include="src\HAL\TEENSY35_36\watchdog.cpp" />
+    <ClCompile Include="src\lcd\dogm\lcdprint_u8g.cpp" />
+    <ClCompile Include="src\lcd\dogm\status_screen_DOGM.cpp" />
+    <ClCompile Include="src\lcd\dogm\status_screen_lite_ST7920.cpp" />
+    <ClCompile Include="src\lcd\dogm\u8g_dev_ssd1306_sh1106_128x64_I2C.cpp" />
+    <ClCompile Include="src\lcd\dogm\u8g_dev_st7565_64128n_HAL.cpp" />
+    <ClCompile Include="src\lcd\dogm\u8g_dev_st7920_128x64_HAL.cpp" />
+    <ClCompile Include="src\lcd\dogm\u8g_dev_tft_320x240_upscale_from_128x64.cpp" />
+    <ClCompile Include="src\lcd\dogm\u8g_dev_uc1701_mini12864_HAL.cpp" />
+    <ClCompile Include="src\lcd\dogm\u8g_fontutf8.cpp" />
+    <ClCompile Include="src\lcd\dogm\ultralcd_DOGM.cpp" />
+    <ClCompile Include="src\lcd\dogm\ultralcd_st7920_u8glib_rrd_AVR.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\dgus\DGUSDisplay.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\dgus\fysetc\DGUSDisplayDef.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\dgus\hiprecy\DGUSDisplayDef.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\dgus\origin\DGUSDisplayDef.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\archim2-flash\flash_storage.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\archim2-flash\media_file_reader.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\ftdi_eve_lib\basic\commands.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\ftdi_eve_lib\basic\spi.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\ftdi_eve_lib\extended\command_processor.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\ftdi_eve_lib\extended\dl_cache.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\ftdi_eve_lib\extended\event_loop.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\ftdi_eve_lib\extended\screen_types.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\ftdi_eve_lib\extended\sound_player.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\ftdi_eve_lib\extended\text_box.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\ftdi_eve_lib\extended\tiny_timer.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\ftdi_eve_lib\extended\unicode\font_bitmaps.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\ftdi_eve_lib\extended\unicode\font_size_t.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\ftdi_eve_lib\extended\unicode\standard_char_set.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\ftdi_eve_lib\extended\unicode\unicode.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\ftdi_eve_lib\extended\unicode\western_char_set.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\language\language.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\marlin_events.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\about_screen.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\advanced_settings_menu.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\alert_dialog_box.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\backlash_compensation_screen.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\base_numeric_adjustment_screen.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\base_screen.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\bio_advanced_settings.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\bio_confirm_home_e.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\bio_confirm_home_xyz.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\bio_main_menu.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\bio_printing_dialog_box.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\bio_status_screen.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\bio_tune_menu.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\boot_screen.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\case_light_screen.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\change_filament_screen.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\confirm_abort_print_dialog_box.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\confirm_auto_calibration_dialog_box.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\confirm_erase_flash_dialog_box.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\confirm_start_print_dialog_box.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\confirm_user_request_alert_box.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\default_acceleration_screen.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\developer_menu.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\dialog_box_base_class.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\display_tuning_screen.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\endstop_state_screen.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\feedrate_percent_screen.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\filament_menu.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\filament_runout_screen.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\files_screen.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\interface_settings_screen.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\interface_sounds_screen.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\jerk_screen.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\junction_deviation_screen.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\kill_screen.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\language_menu.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\linear_advance_screen.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\lock_screen.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\main_menu.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\max_acceleration_screen.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\max_velocity_screen.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\media_player_screen.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\move_axis_screen.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\nozzle_offsets_screen.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\nudge_nozzle_screen.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\preheat_menu.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\preheat_timer_screen.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\restore_failsafe_dialog_box.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\save_settings_dialog_box.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\screens.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\spinner_dialog_box.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\statistics_screen.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\status_screen.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\stepper_bump_sensitivity_screen.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\stepper_current_screen.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\steps_screen.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\stress_test_screen.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\string_format.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\temperature_screen.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\touch_calibration_screen.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\touch_registers_screen.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\tune_menu.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\widget_demo_screen.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\screens\z_offset_screen.cpp" />
+    <ClCompile Include="src\lcd\extui\lib\ftdi_eve_touch_ui\theme\sounds.cpp" />
+    <ClCompile Include="src\lcd\extui\ui_api.cpp" />
+    <ClCompile Include="src\lcd\extui_dgus_lcd.cpp" />
+    <ClCompile Include="src\lcd\extui_example.cpp" />
+    <ClCompile Include="src\lcd\extui_malyan_lcd.cpp" />
+    <ClCompile Include="src\lcd\fontutils.cpp" />
+    <ClCompile Include="src\lcd\HD44780\lcdprint_hd44780.cpp" />
+    <ClCompile Include="src\lcd\HD44780\ultralcd_HD44780.cpp" />
+    <ClCompile Include="src\lcd\lcdprint.cpp" />
+    <ClCompile Include="src\lcd\menu\game\brickout.cpp" />
+    <ClCompile Include="src\lcd\menu\game\game.cpp" />
+    <ClCompile Include="src\lcd\menu\game\invaders.cpp" />
+    <ClCompile Include="src\lcd\menu\game\maze.cpp" />
+    <ClCompile Include="src\lcd\menu\game\snake.cpp" />
+    <ClCompile Include="src\lcd\menu\menu.cpp" />
+    <ClCompile Include="src\lcd\menu\menu_advanced.cpp" />
+    <ClCompile Include="src\lcd\menu\menu_backlash.cpp" />
+    <ClCompile Include="src\lcd\menu\menu_bed_corners.cpp" />
+    <ClCompile Include="src\lcd\menu\menu_bed_leveling.cpp" />
+    <ClCompile Include="src\lcd\menu\menu_cancelobject.cpp" />
+    <ClCompile Include="src\lcd\menu\menu_configuration.cpp" />
+    <ClCompile Include="src\lcd\menu\menu_custom.cpp" />
+    <ClCompile Include="src\lcd\menu\menu_delta_calibrate.cpp" />
+    <ClCompile Include="src\lcd\menu\menu_filament.cpp" />
+    <ClCompile Include="src\lcd\menu\menu_game.cpp" />
+    <ClCompile Include="src\lcd\menu\menu_info.cpp" />
+    <ClCompile Include="src\lcd\menu\menu_job_recovery.cpp" />
+    <ClCompile Include="src\lcd\menu\menu_led.cpp" />
+    <ClCompile Include="src\lcd\menu\menu_main.cpp" />
+    <ClCompile Include="src\lcd\menu\menu_media.cpp" />
+    <ClCompile Include="src\lcd\menu\menu_mixer.cpp" />
+    <ClCompile Include="src\lcd\menu\menu_mmu2.cpp" />
+    <ClCompile Include="src\lcd\menu\menu_motion.cpp" />
+    <ClCompile Include="src\lcd\menu\menu_spindle_laser.cpp" />
+    <ClCompile Include="src\lcd\menu\menu_temperature.cpp" />
+    <ClCompile Include="src\lcd\menu\menu_tmc.cpp" />
+    <ClCompile Include="src\lcd\menu\menu_tune.cpp" />
+    <ClCompile Include="src\lcd\menu\menu_ubl.cpp" />
+    <ClCompile Include="src\lcd\ultralcd.cpp" />
+    <ClCompile Include="src\libs\buzzer.cpp" />
+    <ClCompile Include="src\libs\crc16.cpp" />
+    <ClCompile Include="src\libs\heatshrink\heatshrink_decoder.cpp" />
+    <ClCompile Include="src\libs\hex_print_routines.cpp" />
+    <ClCompile Include="src\libs\L64XX\L64XX_Marlin.cpp" />
+    <ClCompile Include="src\libs\least_squares_fit.cpp" />
+    <ClCompile Include="src\libs\nozzle.cpp" />
+    <ClCompile Include="src\libs\numtostr.cpp" />
+    <ClCompile Include="src\libs\stopwatch.cpp" />
+    <ClCompile Include="src\libs\vector_3.cpp" />
+    <ClCompile Include="src\MarlinCore.cpp" />
+    <ClCompile Include="src\module\configuration_store.cpp" />
+    <ClCompile Include="src\module\delta.cpp" />
+    <ClCompile Include="src\module\endstops.cpp" />
+    <ClCompile Include="src\module\motion.cpp" />
+    <ClCompile Include="src\module\planner.cpp" />
+    <ClCompile Include="src\module\planner_bezier.cpp" />
+    <ClCompile Include="src\module\printcounter.cpp" />
+    <ClCompile Include="src\module\probe.cpp" />
+    <ClCompile Include="src\module\scara.cpp" />
+    <ClCompile Include="src\module\servo.cpp" />
+    <ClCompile Include="src\module\stepper.cpp" />
+    <ClCompile Include="src\module\stepper\indirection.cpp" />
+    <ClCompile Include="src\module\stepper\L64xx.cpp" />
+    <ClCompile Include="src\module\stepper\TMC26X.cpp" />
+    <ClCompile Include="src\module\stepper\trinamic.cpp" />
+    <ClCompile Include="src\module\temperature.cpp" />
+    <ClCompile Include="src\module\tool_change.cpp" />
+    <ClCompile Include="src\sd\cardreader.cpp" />
+    <ClCompile Include="src\sd\Sd2Card.cpp" />
+    <ClCompile Include="src\sd\SdBaseFile.cpp" />
+    <ClCompile Include="src\sd\SdFatUtil.cpp" />
+    <ClCompile Include="src\sd\SdFile.cpp" />
+    <ClCompile Include="src\sd\SdVolume.cpp" />
+    <ClCompile Include="src\sd\usb_flashdrive\lib-uhs2\masstorage.cpp" />
+    <ClCompile Include="src\sd\usb_flashdrive\lib-uhs2\message.cpp" />
+    <ClCompile Include="src\sd\usb_flashdrive\lib-uhs2\parsetools.cpp" />
+    <ClCompile Include="src\sd\usb_flashdrive\lib-uhs2\Usb.cpp" />
+    <ClCompile Include="src\sd\usb_flashdrive\lib-uhs2\usbhost.cpp" />
+    <ClCompile Include="src\sd\usb_flashdrive\Sd2Card_FlashDrive.cpp" />
+  </ItemGroup>
+  <PropertyGroup>
+    <DebuggerFlavor>VisualMicroDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties config.Debug.customdebug_mega_atmega2560_debugger_type="universal" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
