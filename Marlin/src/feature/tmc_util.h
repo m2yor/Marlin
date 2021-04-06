@@ -16,13 +16,13 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  */
 #pragma once
 
 #include "../inc/MarlinConfig.h"
-#include "../lcd/ultralcd.h"
+#include "../lcd/marlinui.h"
 
 #if HAS_TRINAMIC_CONFIG
 
@@ -35,9 +35,10 @@
 #define CHOPPER_DEFAULT_36V  { 5,  2, 4 }
 #define CHOPPER_PRUSAMK3_24V { 3, -2, 6 }
 #define CHOPPER_MARLIN_119   { 5,  2, 3 }
+#define CHOPPER_09STEP_24V   { 3, -1, 5 }
 
 #if ENABLED(MONITOR_DRIVER_STATUS) && !defined(MONITOR_DRIVER_STATUS_INTERVAL_MS)
-  #define MONITOR_DRIVER_STATUS_INTERVAL_MS 500u
+  #define MONITOR_DRIVER_STATUS_INTERVAL_MS 500U
 #endif
 
 constexpr uint16_t _tmc_thrs(const uint16_t msteps, const uint32_t thrs, const uint32_t spmm) {
@@ -102,8 +103,11 @@ class TMCMarlin : public TMC, public TMCStorage<AXIS_LETTER, DRIVER_ID> {
     inline uint16_t get_microstep_counter() { return TMC::MSCNT(); }
 
     #if HAS_STEALTHCHOP
-      inline void refresh_stepping_mode() { this->en_pwm_mode(this->stored.stealthChop_enabled); }
-      inline bool get_stealthChop_status() { return this->en_pwm_mode(); }
+      inline bool get_stealthChop()                { return this->en_pwm_mode(); }
+      inline bool get_stored_stealthChop()         { return this->stored.stealthChop_enabled; }
+      inline void refresh_stepping_mode()          { this->en_pwm_mode(this->stored.stealthChop_enabled); }
+      inline void set_stealthChop(const bool stch) { this->stored.stealthChop_enabled = stch; refresh_stepping_mode(); }
+      inline bool toggle_stepping_mode()           { set_stealthChop(!this->stored.stealthChop_enabled); return get_stealthChop(); }
     #endif
 
     #if ENABLED(HYBRID_THRESHOLD)
@@ -168,8 +172,11 @@ class TMCMarlin<TMC2208Stepper, AXIS_LETTER, DRIVER_ID, AXIS_ID> : public TMC220
     inline uint16_t get_microstep_counter() { return TMC2208Stepper::MSCNT(); }
 
     #if HAS_STEALTHCHOP
-      inline void refresh_stepping_mode() { en_spreadCycle(!this->stored.stealthChop_enabled); }
-      inline bool get_stealthChop_status() { return !this->en_spreadCycle(); }
+      inline bool get_stealthChop()                { return !this->en_spreadCycle(); }
+      inline bool get_stored_stealthChop()         { return this->stored.stealthChop_enabled; }
+      inline void refresh_stepping_mode()          { this->en_spreadCycle(!this->stored.stealthChop_enabled); }
+      inline void set_stealthChop(const bool stch) { this->stored.stealthChop_enabled = stch; refresh_stepping_mode(); }
+      inline bool toggle_stepping_mode()           { set_stealthChop(!this->stored.stealthChop_enabled); return get_stealthChop(); }
     #endif
 
     #if ENABLED(HYBRID_THRESHOLD)
@@ -213,8 +220,11 @@ class TMCMarlin<TMC2209Stepper, AXIS_LETTER, DRIVER_ID, AXIS_ID> : public TMC220
     inline uint16_t get_microstep_counter() { return TMC2209Stepper::MSCNT(); }
 
     #if HAS_STEALTHCHOP
-      inline void refresh_stepping_mode() { en_spreadCycle(!this->stored.stealthChop_enabled); }
-      inline bool get_stealthChop_status() { return !this->en_spreadCycle(); }
+      inline bool get_stealthChop()                { return !this->en_spreadCycle(); }
+      inline bool get_stored_stealthChop()         { return this->stored.stealthChop_enabled; }
+      inline void refresh_stepping_mode()          { this->en_spreadCycle(!this->stored.stealthChop_enabled); }
+      inline void set_stealthChop(const bool stch) { this->stored.stealthChop_enabled = stch; refresh_stepping_mode(); }
+      inline bool toggle_stepping_mode()           { set_stealthChop(!this->stored.stealthChop_enabled); return get_stealthChop(); }
     #endif
 
     #if ENABLED(HYBRID_THRESHOLD)
@@ -325,14 +335,23 @@ void tmc_print_current(TMC &st) {
 #endif
 
 void monitor_tmc_drivers();
-void test_tmc_connection(const bool test_x, const bool test_y, const bool test_z, const bool test_e);
+void test_tmc_connection(
+  LIST_N(LINEAR_AXES, const bool test_x, const bool test_y, const bool test_z, const bool test_i, const bool test_j, const bool test_k),
+  const bool test_e
+);
 
 #if ENABLED(TMC_DEBUG)
   #if ENABLED(MONITOR_DRIVER_STATUS)
     void tmc_set_report_interval(const uint16_t update_interval);
   #endif
-  void tmc_report_all(const bool print_x, const bool print_y, const bool print_z, const bool print_e);
-  void tmc_get_registers(const bool print_x, const bool print_y, const bool print_z, const bool print_e);
+  void tmc_report_all(
+    LIST_N(LINEAR_AXES, const bool print_x, const bool print_y, const bool print_z, const bool print_i, const bool print_j, const bool print_k),
+    const bool print_e
+  );
+  void tmc_get_registers(
+    LIST_N(LINEAR_AXES, const bool print_x, const bool print_y, const bool print_z, const bool print_i, const bool print_j, const bool print_k),
+    const bool print_e
+  );
 #endif
 
 /**
@@ -345,7 +364,7 @@ void test_tmc_connection(const bool test_x, const bool test_y, const bool test_z
 #if USE_SENSORLESS
 
   // Track enabled status of stealthChop and only re-enable where applicable
-  struct sensorless_t { bool x, y, z, x2, y2, z2, z3, z4; };
+  struct sensorless_t { bool LIST_N(LINEAR_AXES, x, y, z, i, j, k), x2, y2, z2, z3, z4; };
 
   #if ENABLED(IMPROVE_HOMING_RELIABILITY)
     extern millis_t sg_guard_period;

@@ -16,7 +16,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  */
 
@@ -27,10 +27,9 @@
 #include "endstops.h"
 #include "stepper.h"
 
-#include "../MarlinCore.h"
 #include "../sd/cardreader.h"
 #include "temperature.h"
-#include "../lcd/ultralcd.h"
+#include "../lcd/marlinui.h"
 
 #if ENABLED(ENDSTOP_INTERRUPTS_FEATURE)
   #include HAL_PATH(../HAL, endstop_interrupts.h)
@@ -48,12 +47,21 @@
   #include "../feature/joystick.h"
 #endif
 
+#if HAS_BED_PROBE
+  #include "probe.h"
+#endif
+
 Endstops endstops;
 
 // private:
 
 bool Endstops::enabled, Endstops::enabled_globally; // Initialized by settings.load()
-volatile uint8_t Endstops::hit_state;
+
+#if LINEAR_AXES >= 4
+  volatile uint16_t Endstops::hit_state; //TODO (DerAndere): volatile hitbits_t Endstops::hit_state;
+#else
+  volatile uint8_t Endstops::hit_state; //TODO (DerAndere): volatile hitbits_t Endstops::hit_state;
+#endif
 
 Endstops::esbits_t Endstops::live_state = 0;
 
@@ -256,6 +264,66 @@ void Endstops::init() {
     #endif
   #endif
 
+  #if HAS_I_MIN
+    #if ENABLED(ENDSTOPPULLUP_IMIN)
+      SET_INPUT_PULLUP(I_MIN_PIN);
+    #elif ENABLED(ENDSTOPPULLDOWN_IMIN)
+      SET_INPUT_PULLDOWN(I_MIN_PIN);
+    #else
+      SET_INPUT(I_MIN_PIN);
+    #endif
+  #endif
+
+  #if HAS_I_MAX
+    #if ENABLED(ENDSTOPPULLUP_IMAX)
+      SET_INPUT_PULLUP(I_MAX_PIN);
+    #elif ENABLED(ENDSTOPPULLDOWN_IMAX)
+      SET_INPUT_PULLDOWN(I_MAX_PIN);
+    #else
+      SET_INPUT(I_MAX_PIN);
+    #endif
+  #endif
+
+  #if HAS_J_MIN
+    #if ENABLED(ENDSTOPPULLUP_JMIN)
+      SET_INPUT_PULLUP(J_MIN_PIN);
+    #elif ENABLED(ENDSTOPPULLDOWN_IMIN)
+      SET_INPUT_PULLDOWN(J_MIN_PIN);
+    #else
+      SET_INPUT(J_MIN_PIN);
+    #endif
+  #endif
+
+  #if HAS_J_MAX
+    #if ENABLED(ENDSTOPPULLUP_JMAX)
+      SET_INPUT_PULLUP(J_MAX_PIN);
+    #elif ENABLED(ENDSTOPPULLDOWN_JMAX)
+      SET_INPUT_PULLDOWN(J_MAX_PIN);
+    #else
+      SET_INPUT(J_MAX_PIN);
+    #endif
+  #endif
+
+  #if HAS_K_MIN
+    #if ENABLED(ENDSTOPPULLUP_KMIN)
+      SET_INPUT_PULLUP(K_MIN_PIN);
+    #elif ENABLED(ENDSTOPPULLDOWN_KMIN)
+      SET_INPUT_PULLDOWN(K_MIN_PIN);
+    #else
+      SET_INPUT(K_MIN_PIN);
+    #endif
+  #endif
+
+  #if HAS_K_MAX
+    #if ENABLED(ENDSTOPPULLUP_KMAX)
+      SET_INPUT_PULLUP(K_MAX_PIN);
+    #elif ENABLED(ENDSTOPPULLDOWN_KMIN)
+      SET_INPUT_PULLDOWN(K_MAX_PIN);
+    #else
+      SET_INPUT(K_MAX_PIN);
+    #endif
+  #endif
+
   #if PIN_EXISTS(CALIBRATION)
     #if ENABLED(CALIBRATION_PIN_PULLUP)
       SET_INPUT_PULLUP(CALIBRATION_PIN);
@@ -275,6 +343,12 @@ void Endstops::init() {
       SET_INPUT(Z_MIN_PROBE_PIN);
     #endif
   #endif
+
+  #if ENABLED(PROBE_ACTIVATION_SWITCH)
+    SET_INPUT(PROBE_ACTIVATION_SWITCH_PIN);
+  #endif
+
+  TERN_(PROBE_TARE, probe.tare());
 
   TERN_(ENDSTOP_INTERRUPTS_FEATURE, setup_endstop_interrupts());
 
@@ -347,12 +421,17 @@ void Endstops::resync() {
 #endif
 
 void Endstops::event_handler() {
-  static uint8_t prev_hit_state; // = 0
-  if (hit_state == prev_hit_state) return;
+  #if LINEAR_AXES >= 4
+    static uint16_t prev_hit_state; // = 0
+  #else
+    static uint8_t prev_hit_state; // = 0
+  #endif
+    if (hit_state == prev_hit_state) return;
   prev_hit_state = hit_state;
   if (hit_state) {
-    #if HAS_SPI_LCD
-      char chrX = ' ', chrY = ' ', chrZ = ' ', chrP = ' ';
+    #if HAS_WIRED_LCD
+      char LIST_N(LINEAR_AXES, chrX = ' ', chrY = ' ', chrZ = ' ', chrI = ' ', chrJ = ' ', chrK = ' '),
+           chrP = ' ';
       #define _SET_STOP_CHAR(A,C) (chr## A = C)
     #else
       #define _SET_STOP_CHAR(A,C) ;
@@ -376,13 +455,29 @@ void Endstops::event_handler() {
     ENDSTOP_HIT_TEST_Y();
     ENDSTOP_HIT_TEST_Z();
 
+    #if LINEAR_AXES >= 4
+      _ENDSTOP_HIT_TEST(I,'I');
+    #endif
+    #if LINEAR_AXES >= 5
+      _ENDSTOP_HIT_TEST(J,'J');
+    #endif
+    #if LINEAR_AXES >= 6
+      _ENDSTOP_HIT_TEST(K,'K');
+    #endif
+
     #if HAS_CUSTOM_PROBE_PIN
       #define P_AXIS Z_AXIS
       if (TEST(hit_state, Z_MIN_PROBE)) _ENDSTOP_HIT_ECHO(P, 'P');
     #endif
     SERIAL_EOL();
 
-    TERN_(HAS_SPI_LCD, ui.status_printf_P(0, PSTR(S_FMT " %c %c %c %c"), GET_TEXT(MSG_LCD_ENDSTOPS), chrX, chrY, chrZ, chrP));
+    TERN_(HAS_WIRED_LCD,
+      ui.status_printf_P(0,
+        PSTR(S_FMT GANG_N(LINEAR_AXES, " %c", " %c", " %c", " %c", " %c", " %c") " %c"),
+        GET_TEXT(MSG_LCD_ENDSTOPS),
+        LIST_N(LINEAR_AXES, chrX, chrY, chrZ, chrI, chrJ, chrK), chrP
+      )
+    );
 
     #if BOTH(SD_ABORT_ON_ENDSTOP_HIT, SDSUPPORT)
       if (planner.abort_on_endstop_hit) {
@@ -396,10 +491,9 @@ void Endstops::event_handler() {
 }
 
 static void print_es_state(const bool is_hit, PGM_P const label=nullptr) {
-  if (label) serialprintPGM(label);
+  if (label) SERIAL_ECHOPGM_P(label);
   SERIAL_ECHOPGM(": ");
-  serialprintPGM(is_hit ? PSTR(STR_ENDSTOP_HIT) : PSTR(STR_ENDSTOP_OPEN));
-  SERIAL_EOL();
+  SERIAL_ECHOLNPGM_P(is_hit ? PSTR(STR_ENDSTOP_HIT) : PSTR(STR_ENDSTOP_OPEN));
 }
 
 void _O2 Endstops::report_states() {
@@ -454,26 +548,46 @@ void _O2 Endstops::report_states() {
   #if HAS_Z4_MAX
     ES_REPORT(Z4_MAX);
   #endif
-  #if HAS_CUSTOM_PROBE_PIN
-    print_es_state(READ(Z_MIN_PROBE_PIN) != Z_MIN_PROBE_ENDSTOP_INVERTING, PSTR(STR_Z_PROBE));
+    #if HAS_I_MIN
+    ES_REPORT(I_MIN);
   #endif
-  #if HAS_FILAMENT_SENSOR
-    #if NUM_RUNOUT_SENSORS == 1
-      print_es_state(READ(FIL_RUNOUT_PIN) != FIL_RUNOUT_INVERTING, PSTR(STR_FILAMENT_RUNOUT_SENSOR));
-    #else
-      #define _CASE_RUNOUT(N) case N: pin = FIL_RUNOUT##N##_PIN; break;
-      LOOP_S_LE_N(i, 1, NUM_RUNOUT_SENSORS) {
-        pin_t pin;
-        switch (i) {
-          default: continue;
-          REPEAT_S(1, INCREMENT(NUM_RUNOUT_SENSORS), _CASE_RUNOUT)
-        }
-        SERIAL_ECHOPGM(STR_FILAMENT_RUNOUT_SENSOR);
-        if (i > 1) SERIAL_CHAR(' ', '0' + i);
-        print_es_state(extDigitalRead(pin) != FIL_RUNOUT_INVERTING);
+  #if HAS_I_MAX
+    ES_REPORT(I_MAX);
+  #endif
+  #if HAS_J_MIN
+    ES_REPORT(J_MIN);
+  #endif
+  #if HAS_J_MAX
+    ES_REPORT(J_MAX);
+  #endif
+    #if HAS_K_MIN
+    ES_REPORT(K_MIN);
+  #endif
+  #if HAS_K_MAX
+    ES_REPORT(K_MAX);
+  #endif
+  #if BOTH(MARLIN_DEV_MODE, PROBE_ACTIVATION_SWITCH)
+    print_es_state(probe_switch_activated(), PSTR(STR_PROBE_EN));
+  #endif
+  #if HAS_CUSTOM_PROBE_PIN
+    print_es_state(PROBE_TRIGGERED(), PSTR(STR_Z_PROBE));
+  #endif
+  #if MULTI_FILAMENT_SENSOR
+    #define _CASE_RUNOUT(N) case N: pin = FIL_RUNOUT##N##_PIN; state = FIL_RUNOUT##N##_STATE; break;
+    LOOP_S_LE_N(i, 1, NUM_RUNOUT_SENSORS) {
+      pin_t pin;
+      uint8_t state;
+      switch (i) {
+        default: continue;
+        REPEAT_S(1, INCREMENT(NUM_RUNOUT_SENSORS), _CASE_RUNOUT)
       }
-      #undef _CASE_RUNOUT
-    #endif
+      SERIAL_ECHOPGM(STR_FILAMENT_RUNOUT_SENSOR);
+      if (i > 1) SERIAL_CHAR(' ', '0' + i);
+      print_es_state(extDigitalRead(pin) != state);
+    }
+    #undef _CASE_RUNOUT
+  #elif HAS_FILAMENT_SENSOR
+    print_es_state(READ(FIL_RUNOUT1_PIN) != FIL_RUNOUT1_STATE, PSTR(STR_FILAMENT_RUNOUT_SENSOR));
   #endif
 
   TERN_(BLTOUCH, bltouch._reset_SW_mode());
@@ -498,14 +612,14 @@ void Endstops::update() {
   #define UPDATE_ENDSTOP_BIT(AXIS, MINMAX) SET_BIT_TO(live_state, _ENDSTOP(AXIS, MINMAX), (READ(_ENDSTOP_PIN(AXIS, MINMAX)) != _ENDSTOP_INVERTING(AXIS, MINMAX)))
   #define COPY_LIVE_STATE(SRC_BIT, DST_BIT) SET_BIT_TO(live_state, DST_BIT, TEST(live_state, SRC_BIT))
 
-  #if ENABLED(G38_PROBE_TARGET) && PIN_EXISTS(Z_MIN_PROBE) && !(CORE_IS_XY || CORE_IS_XZ)
+  #if ENABLED(G38_PROBE_TARGET) && PIN_EXISTS(Z_MIN_PROBE) && NONE(CORE_IS_XY, CORE_IS_XZ, MARKFORGED_XY)
     // If G38 command is active check Z_MIN_PROBE for ALL movement
     if (G38_move) UPDATE_ENDSTOP_BIT(Z, MIN_PROBE);
   #endif
 
   // With Dual X, endstops are only checked in the homing direction for the active extruder
   #if ENABLED(DUAL_X_CARRIAGE)
-    #define E0_ACTIVE stepper.movement_extruder() == 0
+    #define E0_ACTIVE stepper.last_moved_extruder == 0
     #define X_MIN_TEST() ((X_HOME_DIR < 0 && E0_ACTIVE) || (X2_HOME_DIR < 0 && !E0_ACTIVE))
     #define X_MAX_TEST() ((X_HOME_DIR > 0 && E0_ACTIVE) || (X2_HOME_DIR > 0 && !E0_ACTIVE))
   #else
@@ -514,12 +628,12 @@ void Endstops::update() {
   #endif
 
   // Use HEAD for core axes, AXIS for others
-  #if CORE_IS_XY || CORE_IS_XZ
+  #if ANY(CORE_IS_XY, CORE_IS_XZ, MARKFORGED_XY)
     #define X_AXIS_HEAD X_HEAD
   #else
     #define X_AXIS_HEAD X_AXIS
   #endif
-  #if CORE_IS_XY || CORE_IS_YZ
+  #if ANY(CORE_IS_XY, CORE_IS_YZ, MARKFORGED_XY)
     #define Y_AXIS_HEAD Y_HEAD
   #else
     #define Y_AXIS_HEAD Y_AXIS
@@ -529,6 +643,10 @@ void Endstops::update() {
   #else
     #define Z_AXIS_HEAD Z_AXIS
   #endif
+
+  #define I_AXIS_HEAD I_AXIS
+  #define J_AXIS_HEAD J_AXIS
+  #define K_AXIS_HEAD K_AXIS
 
   /**
    * Check and update endstops
@@ -577,7 +695,7 @@ void Endstops::update() {
     #endif
   #endif
 
-  #if HAS_Z_MIN && !Z_SPI_SENSORLESS
+  #if HAS_Z_MIN && NONE(Z_SPI_SENSORLESS, Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN)
     UPDATE_ENDSTOP_BIT(Z, MIN);
     #if ENABLED(Z_MULTI_ENDSTOPS)
       #if HAS_Z2_MIN
@@ -602,9 +720,10 @@ void Endstops::update() {
     #endif
   #endif
 
-  // When closing the gap check the enabled probe
-  #if HAS_CUSTOM_PROBE_PIN
-    UPDATE_ENDSTOP_BIT(Z, MIN_PROBE);
+  #if HAS_BED_PROBE
+    // When closing the gap check the enabled probe
+    if (probe_switch_activated())
+      UPDATE_ENDSTOP_BIT(Z, TERN(HAS_CUSTOM_PROBE_PIN, MIN_PROBE, MIN));
   #endif
 
   #if HAS_Z_MAX && !Z_SPI_SENSORLESS
@@ -633,6 +752,84 @@ void Endstops::update() {
     #elif !HAS_CUSTOM_PROBE_PIN || Z_MAX_PIN != Z_MIN_PROBE_PIN
       // If this pin isn't the bed probe it's the Z endstop
       UPDATE_ENDSTOP_BIT(Z, MAX);
+    #endif
+  #endif
+
+  #if HAS_I_MIN
+    #if ENABLED(I_DUAL_ENDSTOPS)
+      UPDATE_ENDSTOP_BIT(I, MIN);
+      #if HAS_I2_MIN
+        UPDATE_ENDSTOP_BIT(I2, MAX);
+      #else
+        COPY_LIVE_STATE(I_MIN, I2_MIN);
+      #endif
+    #else
+      UPDATE_ENDSTOP_BIT(I, MIN);
+    #endif
+  #endif
+
+  #if HAS_I_MAX
+    #if ENABLED(I_DUAL_ENDSTOPS)
+      UPDATE_ENDSTOP_BIT(I, MAX);
+      #if HAS_I2_MAX
+        UPDATE_ENDSTOP_BIT(I2, MAX);
+      #else
+        COPY_LIVE_STATE(I_MAX, I2_MAX);
+      #endif
+    #else
+      UPDATE_ENDSTOP_BIT(I, MAX);
+    #endif
+  #endif
+
+  #if HAS_J_MIN
+    #if ENABLED(J_DUAL_ENDSTOPS)
+      UPDATE_ENDSTOP_BIT(J, MIN);
+      #if HAS_J2_MIN
+        UPDATE_ENDSTOP_BIT(J2, MIN);
+      #else
+        COPY_LIVE_STATE(J_MIN, J2_MIN);
+      #endif
+    #else
+      UPDATE_ENDSTOP_BIT(J, MIN);
+    #endif
+  #endif
+
+  #if HAS_J_MAX
+    #if ENABLED(J_DUAL_ENDSTOPS)
+      UPDATE_ENDSTOP_BIT(J, MAX);
+      #if HAS_J2_MAX
+        UPDATE_ENDSTOP_BIT(J2, MAX);
+      #else
+        COPY_LIVE_STATE(J_MAX, J2_MAX);
+      #endif
+    #else
+      UPDATE_ENDSTOP_BIT(J, MAX);
+    #endif
+  #endif
+
+  #if HAS_K_MIN
+    #if ENABLED(K_DUAL_ENDSTOPS)
+      UPDATE_ENDSTOP_BIT(K, MIN);
+      #if HAS_K2_MIN
+        UPDATE_ENDSTOP_BIT(K2, MIN);
+      #else
+        COPY_LIVE_STATE(K_MIN, K2_MIN);
+      #endif
+    #else
+      UPDATE_ENDSTOP_BIT(K, MIN);
+    #endif
+  #endif
+
+  #if HAS_K_MAX
+    #if ENABLED(K_DUAL_ENDSTOPS)
+      UPDATE_ENDSTOP_BIT(K, MAX);
+      #if HAS_K2_MAX
+        UPDATE_ENDSTOP_BIT(K2, MAX);
+      #else
+        COPY_LIVE_STATE(K_MAX, K2_MAX);
+      #endif
+    #else
+      UPDATE_ENDSTOP_BIT(K, MAX);
     #endif
   #endif
 
@@ -736,7 +933,7 @@ void Endstops::update() {
     #define PROCESS_ENDSTOP_Z(MINMAX) PROCESS_DUAL_ENDSTOP(Z, MINMAX)
   #endif
 
-  #if ENABLED(G38_PROBE_TARGET) && PIN_EXISTS(Z_MIN_PROBE) && !(CORE_IS_XY || CORE_IS_XZ)
+  #if ENABLED(G38_PROBE_TARGET) && PIN_EXISTS(Z_MIN_PROBE) && NONE(CORE_IS_XY, CORE_IS_XZ, MARKFORGED_XY)
     #if ENABLED(G38_PROBE_AWAY)
       #define _G38_OPEN_STATE (G38_move >= 4)
     #else
@@ -857,37 +1054,78 @@ void Endstops::update() {
       #endif
     }
   }
+
+  #if LINEAR_AXES >= 4
+    if (stepper.axis_is_moving(I_AXIS)) {
+      if (stepper.motor_direction(I_AXIS_HEAD)) { // -direction
+        #if HAS_I_MIN || (I_SPI_SENSORLESS && I_HOME_DIR < 0)
+          PROCESS_ENDSTOP(I, MIN);
+        #endif
+      }
+      else { // +direction
+        #if HAS_I_MAX || (I_SPI_SENSORLESS && I_HOME_DIR > 0)
+          PROCESS_ENDSTOP(I, MAX);
+        #endif
+      }
+    }
+  #endif
+
+  #if LINEAR_AXES >= 5
+    if (stepper.axis_is_moving(J_AXIS)) {
+      if (stepper.motor_direction(J_AXIS_HEAD)) { // -direction
+        #if HAS_J_MIN || (J_SPI_SENSORLESS && J_HOME_DIR < 0)
+          PROCESS_ENDSTOP(J, MIN);
+        #endif
+      }
+      else { // +direction
+        #if HAS_J_MAX || (J_SPI_SENSORLESS && J_HOME_DIR > 0)
+          PROCESS_ENDSTOP(J, MAX);
+        #endif
+      }
+    }
+  #endif
+
+  #if LINEAR_AXES >= 6
+    if (stepper.axis_is_moving(K_AXIS)) {
+      if (stepper.motor_direction(K_AXIS_HEAD)) { // -direction
+        #if HAS_K_MIN || (K_SPI_SENSORLESS && K_HOME_DIR < 0)
+          PROCESS_ENDSTOP(K, MIN);
+        #endif
+      }
+      else { // +direction
+        #if HAS_K_MAX || (K_SPI_SENSORLESS && K_HOME_DIR > 0)
+          PROCESS_ENDSTOP(K, MAX);
+        #endif
+      }
+    }
+  #endif
 } // Endstops::update()
 
 #if ENABLED(SPI_ENDSTOPS)
-
-  #define X_STOP (X_HOME_DIR < 0 ? X_MIN : X_MAX)
-  #define Y_STOP (Y_HOME_DIR < 0 ? Y_MIN : Y_MAX)
-  #define Z_STOP (Z_HOME_DIR < 0 ? Z_MIN : Z_MAX)
 
   bool Endstops::tmc_spi_homing_check() {
     bool hit = false;
     #if X_SPI_SENSORLESS
       if (tmc_spi_homing.x && (stepperX.test_stall_status()
-        #if CORE_IS_XY && Y_SPI_SENSORLESS
+        #if ANY(CORE_IS_XY, MARKFORGED_XY) && Y_SPI_SENSORLESS
           || stepperY.test_stall_status()
         #elif CORE_IS_XZ && Z_SPI_SENSORLESS
           || stepperZ.test_stall_status()
         #endif
       )) {
-        SBI(live_state, X_STOP);
+        SBI(live_state, X_ENDSTOP);
         hit = true;
       }
     #endif
     #if Y_SPI_SENSORLESS
       if (tmc_spi_homing.y && (stepperY.test_stall_status()
-        #if CORE_IS_XY && X_SPI_SENSORLESS
+        #if ANY(CORE_IS_XY, MARKFORGED_XY) && X_SPI_SENSORLESS
           || stepperX.test_stall_status()
         #elif CORE_IS_YZ && Z_SPI_SENSORLESS
           || stepperZ.test_stall_status()
         #endif
       )) {
-        SBI(live_state, Y_STOP);
+        SBI(live_state, Y_ENDSTOP);
         hit = true;
       }
     #endif
@@ -899,17 +1137,41 @@ void Endstops::update() {
           || stepperY.test_stall_status()
         #endif
       )) {
-        SBI(live_state, Z_STOP);
+        SBI(live_state, Z_ENDSTOP);
         hit = true;
       }
     #endif
+    #if I_SPI_SENSORLESS
+      if (tmc_spi_homing.i && stepperI.test_stall_status()) {
+        SBI(live_state, I_ENDSTOP);
+        hit = true;
+      }
+    #endif
+    #if J_SPI_SENSORLESS
+      if (tmc_spi_homing.j && stepperJ.test_stall_status()) {
+        SBI(live_state, J_ENDSTOP);
+        hit = true;
+      }
+    #endif
+    #if K_SPI_SENSORLESS
+      if (tmc_spi_homing.k && stepperK.test_stall_status()) {
+        SBI(live_state, K_ENDSTOP);
+        hit = true;
+      }
+    #endif
+
+    if (TERN0(ENDSTOP_INTERRUPTS_FEATURE, hit)) update();
+
     return hit;
   }
 
   void Endstops::clear_endstop_state() {
-    TERN_(X_SPI_SENSORLESS, CBI(live_state, X_STOP));
-    TERN_(Y_SPI_SENSORLESS, CBI(live_state, Y_STOP));
-    TERN_(Z_SPI_SENSORLESS, CBI(live_state, Z_STOP));
+    TERN_(X_SPI_SENSORLESS, CBI(live_state, X_ENDSTOP));
+    TERN_(Y_SPI_SENSORLESS, CBI(live_state, Y_ENDSTOP));
+    TERN_(Z_SPI_SENSORLESS, CBI(live_state, Z_ENDSTOP));
+    TERN_(I_SPI_SENSORLESS, CBI(live_state, I_ENDSTOP));
+    TERN_(J_SPI_SENSORLESS, CBI(live_state, J_ENDSTOP));
+    TERN_(K_SPI_SENSORLESS, CBI(live_state, K_ENDSTOP));
   }
 
 #endif // SPI_ENDSTOPS
@@ -986,6 +1248,24 @@ void Endstops::update() {
     #if HAS_Z4_MAX
       ES_GET_STATE(Z4_MAX);
     #endif
+    #if HAS_I_MAX
+      ES_GET_STATE(I_MAX);
+    #endif
+    #if HAS_I_MIN
+      ES_GET_STATE(I_MIN);
+    #endif
+    #if HAS_J_MAX
+      ES_GET_STATE(J_MAX);
+    #endif
+    #if HAS_J_MIN
+      ES_GET_STATE(J_MIN);
+    #endif
+    #if HAS_K_MAX
+      ES_GET_STATE(K_MAX);
+    #endif
+    #if HAS_K_MIN
+      ES_GET_STATE(K_MIN);
+    #endif
 
     uint16_t endstop_change = live_state_local ^ old_live_state_local;
     #define ES_REPORT_CHANGE(S) if (TEST(endstop_change, S)) SERIAL_ECHOPAIR("  " STRINGIFY(S) ":", TEST(live_state_local, S))
@@ -1041,6 +1321,24 @@ void Endstops::update() {
       #endif
       #if HAS_Z4_MAX
         ES_REPORT_CHANGE(Z4_MAX);
+      #endif
+      #if HAS_I_MIN
+        ES_REPORT_CHANGE(I_MIN);
+      #endif
+      #if HAS_I_MAX
+        ES_REPORT_CHANGE(I_MAX);
+      #endif
+      #if HAS_J_MIN
+        ES_REPORT_CHANGE(J_MIN);
+      #endif
+      #if HAS_J_MAX
+        ES_REPORT_CHANGE(J_MAX);
+      #endif
+      #if HAS_K_MIN
+        ES_REPORT_CHANGE(K_MIN);
+      #endif
+      #if HAS_K_MAX
+        ES_REPORT_CHANGE(K_MAX);
       #endif
       SERIAL_ECHOLNPGM("\n");
       analogWrite(pin_t(LED_PIN), local_LED_status);

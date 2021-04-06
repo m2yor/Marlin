@@ -16,7 +16,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  */
 #pragma once
@@ -164,7 +164,7 @@ typedef struct block_t {
   };
   uint32_t step_event_count;                // The number of step events required to complete this block
 
-  #if EXTRUDERS > 1
+  #if HAS_MULTI_EXTRUDER
     uint8_t extruder;                       // The extruder to move (if E move)
   #else
     static constexpr uint8_t extruder = 0;
@@ -218,7 +218,7 @@ typedef struct block_t {
     uint8_t valve_pressure, e_to_p_pressure;
   #endif
 
-  #if HAS_SPI_LCD
+  #if HAS_WIRED_LCD
     uint32_t segment_time_us;
   #endif
 
@@ -256,10 +256,10 @@ typedef struct block_t {
 #endif
 
 typedef struct {
-   uint32_t max_acceleration_mm_per_s2[XYZE_N], // (mm/s^2) M201 XYZE
+   uint32_t max_acceleration_mm_per_s2[NUM_AXIS_N], // (mm/s^2) M201 XYZE
             min_segment_time_us;                // (µs) M205 B
-      float axis_steps_per_mm[XYZE_N];          // (steps) M92 XYZE - Steps per millimeter
- feedRate_t max_feedrate_mm_s[XYZE_N];          // (mm/s) M203 XYZE - Max speeds
+      float axis_steps_per_mm[NUM_AXIS_N];          // (steps) M92 XYZE - Steps per millimeter
+ feedRate_t max_feedrate_mm_s[NUM_AXIS_N];          // (mm/s) M203 XYZE - Max speeds
       float acceleration,                       // (mm/s^2) M204 S - Normal acceleration. DEFAULT ACCELERATION for all printing moves.
             retract_acceleration,               // (mm/s^2) M204 R - Retract acceleration. Filament pull-back and push-forward while standing still in the other axes
             travel_acceleration;                // (mm/s^2) M204 T - Travel acceleration. DEFAULT ACCELERATION for all NON printing moves.
@@ -286,6 +286,10 @@ typedef struct {
                 xz = XZ_SKEW_FACTOR, yz = YZ_SKEW_FACTOR;
   #endif
 } skew_factor_t;
+
+#if ENABLED(DISABLE_INACTIVE_EXTRUDER)
+  typedef IF<(BLOCK_BUFFER_SIZE > 64), uint16_t, uint8_t>::type last_move_t;
+#endif
 
 class Planner {
   public:
@@ -344,8 +348,8 @@ class Planner {
       static laser_state_t laser_inline;
     #endif
 
-    static uint32_t max_acceleration_steps_per_s2[XYZE_N]; // (steps/s^2) Derived from mm_per_s2
-    static float steps_to_mm[XYZE_N];           // Millimeters per step
+    static uint32_t max_acceleration_steps_per_s2[NUM_AXIS_N]; // (steps/s^2) Derived from mm_per_s2
+    static float steps_to_mm[NUM_AXIS_N];           // Millimeters per step
 
     #if HAS_JUNCTION_DEVIATION
       static float junction_deviation_mm;       // (mm) M205 J
@@ -435,10 +439,10 @@ class Planner {
 
     #if ENABLED(DISABLE_INACTIVE_EXTRUDER)
        // Counters to manage disabling inactive extruders
-      static uint8_t g_uc_extruder_last_move[EXTRUDERS];
+      static last_move_t g_uc_extruder_last_move[EXTRUDERS];
     #endif
 
-    #if HAS_SPI_LCD
+    #if HAS_WIRED_LCD
       volatile static uint32_t block_buffer_runtime_us; // Theoretical block buffer runtime in µs
     #endif
 
@@ -456,12 +460,27 @@ class Planner {
      * Static (class) Methods
      */
 
+    // Recalculate steps/s^2 accelerations based on mm/s^2 settings
     static void reset_acceleration_rates();
-    static void refresh_positioning();
-    static void set_max_acceleration(const uint8_t axis, float targetValue);
-    static void set_max_feedrate(const uint8_t axis, float targetValue);
-    static void set_max_jerk(const AxisEnum axis, float targetValue);
 
+    /**
+     * Recalculate 'position' and 'steps_to_mm'.
+     * Must be called whenever settings.axis_steps_per_mm changes!
+     */
+    static void refresh_positioning();
+
+    // For an axis set the Maximum Acceleration in mm/s^2
+    static void set_max_acceleration(const uint8_t axis, float inMaxAccelMMS2);
+
+    // For an axis set the Maximum Feedrate in mm/s
+    static void set_max_feedrate(const uint8_t axis, float inMaxFeedrateMMS);
+
+    // For an axis set the Maximum Jerk (instant change) in mm/s
+    #if HAS_CLASSIC_JERK
+      static void set_max_jerk(const AxisEnum axis, float inMaxJerkMMS);
+    #else
+      static inline void set_max_jerk(const AxisEnum, const float&) {}
+    #endif
 
     #if EXTRUDERS
       FORCE_INLINE static void refresh_e_factor(const uint8_t e) {
@@ -560,10 +579,10 @@ class Planner {
     #if ENABLED(SKEW_CORRECTION)
 
       FORCE_INLINE static void skew(float &cx, float &cy, const float &cz) {
-        if (WITHIN(cx, X_MIN_POS + 1, X_MAX_POS) && WITHIN(cy, Y_MIN_POS + 1, Y_MAX_POS)) {
+        if (COORDINATE_OKAY(cx, X_MIN_POS + 1, X_MAX_POS) && COORDINATE_OKAY(cy, Y_MIN_POS + 1, Y_MAX_POS)) {
           const float sx = cx - cy * skew_factor.xy - cz * (skew_factor.xz - (skew_factor.xy * skew_factor.yz)),
                       sy = cy - cz * skew_factor.yz;
-          if (WITHIN(sx, X_MIN_POS, X_MAX_POS) && WITHIN(sy, Y_MIN_POS, Y_MAX_POS)) {
+          if (COORDINATE_OKAY(sx, X_MIN_POS, X_MAX_POS) && COORDINATE_OKAY(sy, Y_MIN_POS, Y_MAX_POS)) {
             cx = sx; cy = sy;
           }
         }
@@ -571,10 +590,10 @@ class Planner {
       FORCE_INLINE static void skew(xyz_pos_t &raw) { skew(raw.x, raw.y, raw.z); }
 
       FORCE_INLINE static void unskew(float &cx, float &cy, const float &cz) {
-        if (WITHIN(cx, X_MIN_POS, X_MAX_POS) && WITHIN(cy, Y_MIN_POS, Y_MAX_POS)) {
+        if (COORDINATE_OKAY(cx, X_MIN_POS, X_MAX_POS) && COORDINATE_OKAY(cy, Y_MIN_POS, Y_MAX_POS)) {
           const float sx = cx + cy * skew_factor.xy + cz * skew_factor.xz,
                       sy = cy + cz * skew_factor.yz;
-          if (WITHIN(sx, X_MIN_POS, X_MAX_POS) && WITHIN(sy, Y_MIN_POS, Y_MAX_POS)) {
+          if (COORDINATE_OKAY(sx, X_MIN_POS, X_MAX_POS) && COORDINATE_OKAY(sy, Y_MIN_POS, Y_MAX_POS)) {
             cx = sx; cy = sy;
           }
         }
@@ -708,7 +727,7 @@ class Planner {
     private:
 
       // Allow do_homing_move to access internal functions, such as buffer_segment.
-      friend void do_homing_move(const AxisEnum, const float, const feedRate_t);
+      friend void do_homing_move(const AxisEnum, const float, const feedRate_t, const bool);
   #endif
 
     /**
@@ -723,7 +742,17 @@ class Planner {
      *  extruder    - target extruder
      *  millimeters - the length of the movement, if known
      */
-    static bool buffer_segment(const float &a, const float &b, const float &c, const float &e
+    static bool buffer_segment(const float &a, const float &b, const float &c
+      #if LINEAR_AXES >= 4
+        , const float &i
+      #endif
+      #if LINEAR_AXES >= 5
+        , const float &j
+      #endif
+      #if LINEAR_AXES >= 6
+        , const float &k
+      #endif
+      , const float &e
       #if HAS_DIST_MM_ARG
         , const xyze_float_t &cart_dist_mm
       #endif
@@ -736,11 +765,13 @@ class Planner {
       #endif
       , const feedRate_t &fr_mm_s, const uint8_t extruder, const float &millimeters=0.0
     ) {
-      return buffer_segment(abce.a, abce.b, abce.c, abce.e
+      return buffer_segment(
+        LIST_N(LINEAR_AXES, abce.a, abce.b, abce.c, abce.i, abce.j, abce.k), abce.e
         #if HAS_DIST_MM_ARG
           , cart_dist_mm
         #endif
-        , fr_mm_s, extruder, millimeters);
+        , fr_mm_s, extruder, millimeters
+      );
     }
 
   public:
@@ -756,7 +787,17 @@ class Planner {
      *  millimeters  - the length of the movement, if known
      *  inv_duration - the reciprocal if the duration of the movement, if known (kinematic only if feeedrate scaling is enabled)
      */
-    static bool buffer_line(const float &rx, const float &ry, const float &rz, const float &e, const feedRate_t &fr_mm_s, const uint8_t extruder, const float millimeters=0.0
+    static bool buffer_line(const float &rx, const float &ry, const float &rz
+      #if LINEAR_AXES >= 4
+        , const float &ri
+      #endif
+      #if LINEAR_AXES >= 5
+        , const float &rj
+      #endif
+      #if LINEAR_AXES >= 6
+        , const float &rk
+      #endif
+      , const float &e, const feedRate_t &fr_mm_s, const uint8_t extruder, const float millimeters=0.0
       #if ENABLED(SCARA_FEEDRATE_SCALING)
         , const float &inv_duration=0.0
       #endif
@@ -767,7 +808,9 @@ class Planner {
         , const float &inv_duration=0.0
       #endif
     ) {
-      return buffer_line(cart.x, cart.y, cart.z, cart.e, fr_mm_s, extruder, millimeters
+      return buffer_line(
+        LIST_N(LINEAR_AXES, cart.x, cart.y, cart.z, cart.i, cart.j, cart.k)
+        , cart.e, fr_mm_s, extruder, millimeters
         #if ENABLED(SCARA_FEEDRATE_SCALING)
           , inv_duration
         #endif
@@ -791,8 +834,21 @@ class Planner {
      *
      * Clears previous speed values.
      */
-    static void set_position_mm(const float &rx, const float &ry, const float &rz, const float &e);
-    FORCE_INLINE static void set_position_mm(const xyze_pos_t &cart) { set_position_mm(cart.x, cart.y, cart.z, cart.e); }
+    static void set_position_mm(const float &rx, const float &ry, const float &rz
+      #if LINEAR_AXES >= 4
+        , const float &ri
+      #endif
+      #if LINEAR_AXES >= 5
+        , const float &rj
+      #endif
+      #if LINEAR_AXES > 5
+        , const float &rk
+      #endif
+      , const float &e
+    );
+    FORCE_INLINE static void set_position_mm(const xyze_pos_t &cart) {
+      set_position_mm(LIST_N(LINEAR_AXES, cart.x, cart.y, cart.z, cart.i, cart.j, cart.k), cart.e);
+    }
     static void set_e_position_mm(const float &e);
 
     /**
@@ -801,8 +857,23 @@ class Planner {
      * The supplied position is in machine space, and no additional
      * conversions are applied.
      */
-    static void set_machine_position_mm(const float &a, const float &b, const float &c, const float &e);
-    FORCE_INLINE static void set_machine_position_mm(const abce_pos_t &abce) { set_machine_position_mm(abce.a, abce.b, abce.c, abce.e); }
+    static void set_machine_position_mm(const float &a, const float &b, const float &c
+      #if LINEAR_AXES >= 4
+        , const float &i
+      #endif
+      #if LINEAR_AXES >= 5
+        , const float &j
+      #endif
+      #if LINEAR_AXES >= 6
+        , const float &k
+      #endif
+      , const float &e
+    );
+    FORCE_INLINE static void set_machine_position_mm(const abce_pos_t &abce) {
+      set_machine_position_mm(
+        LIST_N(LINEAR_AXES, abce.a, abce.b, abce.c, abce.i, abce.j, abce.k), abce.e
+      );
+    }
 
     /**
      * Get an axis position according to stepper position(s)
@@ -812,9 +883,14 @@ class Planner {
 
     static inline abce_pos_t get_axis_positions_mm() {
       const abce_pos_t out = {
-        get_axis_position_mm(A_AXIS),
-        get_axis_position_mm(B_AXIS),
-        get_axis_position_mm(C_AXIS),
+        LIST_N(LINEAR_AXES,
+          get_axis_position_mm(A_AXIS),
+          get_axis_position_mm(B_AXIS),
+          get_axis_position_mm(C_AXIS),
+          get_axis_position_mm(I_AXIS),
+          get_axis_position_mm(J_AXIS),
+          get_axis_position_mm(K_AXIS)
+        ),
         get_axis_position_mm(E_AXIS)
       };
       return out;
@@ -871,7 +947,7 @@ class Planner {
         block_buffer_tail = next_block_index(block_buffer_tail);
     }
 
-    #if HAS_SPI_LCD
+    #if HAS_WIRED_LCD
       static uint16_t block_buffer_runtime();
       static void clear_block_buffer_runtime();
     #endif
@@ -879,9 +955,9 @@ class Planner {
     #if ENABLED(AUTOTEMP)
       static float autotemp_min, autotemp_max, autotemp_factor;
       static bool autotemp_enabled;
-      static void getHighESpeed();
-      static void autotemp_M104_M109();
       static void autotemp_update();
+      static void autotemp_M104_M109();
+      static void getHighESpeed();
     #endif
 
     #if HAS_LINEAR_E_JERK
@@ -893,6 +969,14 @@ class Planner {
     #endif
 
   private:
+
+    #if ENABLED(AUTOTEMP)
+      #if ENABLED(AUTOTEMP_PROPORTIONAL)
+        static void _autotemp_update_from_hotend();
+      #else
+        static inline void _autotemp_update_from_hotend() {}
+      #endif
+    #endif
 
     /**
      * Get the index of the next / previous block in the ring buffer
@@ -956,13 +1040,13 @@ class Planner {
 
       FORCE_INLINE static void normalize_junction_vector(xyze_float_t &vector) {
         float magnitude_sq = 0;
-        LOOP_XYZE(idx) if (vector[idx]) magnitude_sq += sq(vector[idx]);
+        LOOP_NUM_AXIS(idx) if (vector[idx]) magnitude_sq += sq(vector[idx]);
         vector *= RSQRT(magnitude_sq);
       }
 
       FORCE_INLINE static float limit_value_by_axis_maximum(const float &max_value, xyze_float_t &unit_vec) {
         float limit_value = max_value;
-        LOOP_XYZE(idx) {
+        LOOP_NUM_AXIS(idx) {
           if (unit_vec[idx]) {
             if (limit_value * ABS(unit_vec[idx]) > settings.max_acceleration_mm_per_s2[idx])
               limit_value = ABS(settings.max_acceleration_mm_per_s2[idx] / unit_vec[idx]);
@@ -974,6 +1058,6 @@ class Planner {
     #endif // !CLASSIC_JERK
 };
 
-#define PLANNER_XY_FEEDRATE() (_MIN(planner.settings.max_feedrate_mm_s[X_AXIS], planner.settings.max_feedrate_mm_s[Y_AXIS]))
+#define PLANNER_XY_FEEDRATE() _MIN(planner.settings.max_feedrate_mm_s[X_AXIS], planner.settings.max_feedrate_mm_s[Y_AXIS])
 
 extern Planner planner;

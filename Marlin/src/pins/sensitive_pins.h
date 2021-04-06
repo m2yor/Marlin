@@ -16,7 +16,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  */
 #pragma once
@@ -123,6 +123,129 @@
 #endif
 
 #define _Z_PINS Z_STEP_PIN, Z_DIR_PIN, Z_ENABLE_PIN, _Z_MIN _Z_MAX _Z_MS1 _Z_MS2 _Z_MS3 _Z_CS
+
+#if LINEAR_AXES >= 4
+
+  #if PIN_EXISTS(I_MIN)
+    #define _I_MIN I_MIN_PIN,
+  #else
+    #define _I_MIN
+  #endif
+  #if PIN_EXISTS(I_MAX)
+    #define _I_MAX I_MAX_PIN,
+  #else
+    #define _I_MAX
+  #endif
+  #if PIN_EXISTS(I_CS)
+    #define _I_CS I_CS_PIN,
+  #else
+    #define _I_CS
+  #endif
+  #if PIN_EXISTS(I_MS1)
+    #define _I_MS1 I_MS1_PIN,
+  #else
+    #define _I_MS1
+  #endif
+  #if PIN_EXISTS(I_MS2)
+    #define _I_MS2 I_MS2_PIN,
+  #else
+    #define _I_MS2
+  #endif
+  #if PIN_EXISTS(I_MS3)
+    #define _I_MS3 I_MS3_PIN,
+  #else
+    #define _I_MS3
+  #endif
+
+  #define _I_PINS I_STEP_PIN, I_DIR_PIN, I_ENABLE_PIN, _I_MIN _I_MAX _I_MS1 _I_MS2 _I_MS3 _I_CS
+
+#else
+
+  #define _I_PINS
+
+#endif
+
+#if LINEAR_AXES >= 5
+
+  #if PIN_EXISTS(J_MIN)
+    #define _J_MIN J_MIN_PIN,
+  #else
+    #define _J_MIN
+  #endif
+  #if PIN_EXISTS(J_MAX)
+    #define _J_MAX J_MAX_PIN,
+  #else
+    #define _J_MAX
+  #endif
+  #if PIN_EXISTS(J_CS)
+    #define _J_CS J_CS_PIN,
+  #else
+    #define _J_CS
+  #endif
+  #if PIN_EXISTS(J_MS1)
+    #define _J_MS1 J_MS1_PIN,
+  #else
+    #define _J_MS1
+  #endif
+  #if PIN_EXISTS(J_MS2)
+    #define _J_MS2 J_MS2_PIN,
+  #else
+    #define _J_MS2
+  #endif
+  #if PIN_EXISTS(J_MS3)
+    #define _J_MS3 J_MS3_PIN,
+  #else
+    #define _J_MS3
+  #endif
+
+  #define _J_PINS J_STEP_PIN, J_DIR_PIN, J_ENABLE_PIN, _J_MIN _J_MAX _J_MS1 _J_MS2 _J_MS3 _J_CS
+
+#else
+
+  #define _J_PINS
+
+#endif
+
+#if LINEAR_AXES >= 6
+
+  #if PIN_EXISTS(K_MIN)
+    #define _K_MIN K_MIN_PIN,
+  #else
+    #define _K_MIN
+  #endif
+  #if PIN_EXISTS(K_MAX)
+    #define _K_MAX K_MAX_PIN,
+  #else
+    #define _K_MAX
+  #endif
+  #if PIN_EXISTS(K_CS)
+    #define _K_CS K_CS_PIN,
+  #else
+    #define _K_CS
+  #endif
+  #if PIN_EXISTS(K_MS1)
+    #define _K_MS1 K_MS1_PIN,
+  #else
+    #define _K_MS1
+  #endif
+  #if PIN_EXISTS(K_MS2)
+    #define _K_MS2 K_MS2_PIN,
+  #else
+    #define _K_MS2
+  #endif
+  #if PIN_EXISTS(K_MS3)
+    #define _K_MS3 K_MS3_PIN,
+  #else
+    #define _K_MS3
+  #endif
+
+  #define _K_PINS K_STEP_PIN, K_DIR_PIN, K_ENABLE_PIN, _K_MIN _K_MAX _K_MS1 _K_MS2 _K_MS3 _K_CS
+
+#else
+
+  #define _K_PINS
+
+#endif
 
 //
 // Extruder Chip Select, Digital Micro-steps
@@ -354,7 +477,7 @@
     #endif
   #endif
 
-#elif EXTRUDERS > 1 || ENABLED(MIXING_EXTRUDER)
+#elif EITHER(HAS_MULTI_EXTRUDER, MIXING_EXTRUDER)
 
   #undef _E1_PINS
   #define _E1_PINS E1_STEP_PIN, E1_DIR_PIN, E1_ENABLE_PIN, _E1_CS _E1_MS1 _E1_MS2 _E1_MS3
@@ -383,7 +506,7 @@
     #endif // EXTRUDERS > 3 || MIXING_EXTRUDER > 3
   #endif // EXTRUDERS > 2 || MIXING_EXTRUDER > 2
 
-#endif // EXTRUDERS > 1 || MIXING_EXTRUDER
+#endif // HAS_MULTI_EXTRUDER || MIXING_EXTRUDER
 
 //
 // Heaters, Fans, Temp Sensors
@@ -608,12 +731,6 @@
   #define _Z_PROBE
 #endif
 
-#if TEMP_SENSOR_BED && PIN_EXISTS(HEATER_BED)
-  #define _HEATER_BED HEATER_BED_PIN,
-#else
-  #define _HEATER_BED
-#endif
-
 #if PIN_EXISTS(FAN)
   #define _FAN0 FAN_PIN,
 #else
@@ -660,21 +777,44 @@
   #define _FANC
 #endif
 
-#if PIN_EXISTS(HEATER_BED) && PIN_EXISTS(TEMP_BED)
+#if TEMP_SENSOR_BED && PINS_EXIST(TEMP_BED, HEATER_BED)
   #define _BED_PINS HEATER_BED_PIN, analogInputToDigitalPin(TEMP_BED_PIN),
 #else
   #define _BED_PINS
 #endif
 
-#if PIN_EXISTS(TEMP_CHAMBER)
-  #define __CHAMBER_PINS CHAMBER_AUTO_FAN_PIN, analogInputToDigitalPin(TEMP_CHAMBER_PIN),
+#if TEMP_SENSOR_CHAMBER && PIN_EXISTS(TEMP_CHAMBER)
+  #define _CHAMBER_TEMP analogInputToDigitalPin(TEMP_CHAMBER_PIN),
 #else
-  #define __CHAMBER_PINS
+  #define _CHAMBER_TEMP
 #endif
-#if PIN_EXISTS(HEATER_CHAMBER)
-  #define _CHAMBER_PINS __CHAMBER_PINS HEATER_CHAMBER_PIN,
+#if TEMP_SENSOR_CHAMBER && PINS_EXIST(TEMP_CHAMBER, HEATER_CHAMBER)
+  #define _CHAMBER_HEATER HEATER_CHAMBER_PIN,
 #else
-  #define _CHAMBER_PINS
+  #define _CHAMBER_HEATER
+#endif
+#if TEMP_SENSOR_CHAMBER && PINS_EXIST(TEMP_CHAMBER, CHAMBER_AUTO_FAN)
+  #define _CHAMBER_FAN CHAMBER_AUTO_FAN_PIN,
+#else
+  #define _CHAMBER_FAN
+#endif
+
+#if TEMP_SENSOR_COOLER && PIN_EXISTS(TEMP_COOLER)
+  #define _COOLER_TEMP analogInputToDigitalPin(TEMP_COOLER_PIN),
+#else
+  #define _COOLER_TEMP
+#endif
+
+#if TEMP_SENSOR_COOLER && PIN_EXISTS(COOLER)
+  #define _COOLER COOLER_PIN,
+#else
+  #define _COOLER
+#endif
+
+#if TEMP_SENSOR_COOLER && PINS_EXIST(TEMP_COOLER, COOLER_AUTO_FAN)
+  #define _COOLER_FAN COOLER_AUTO_FAN_PIN,
+#else
+  #define _COOLER_FAN
 #endif
 
 #ifndef HAL_SENSITIVE_PINS
@@ -682,9 +822,10 @@
 #endif
 
 #define SENSITIVE_PINS { \
-  _X_PINS _Y_PINS _Z_PINS _X2_PINS _Y2_PINS _Z2_PINS _Z3_PINS _Z4_PINS _Z_PROBE \
+  _X_PINS _Y_PINS _Z_PINS _I_PINS _J_PINS _K_PINS \
+  _X2_PINS _Y2_PINS _Z2_PINS _Z3_PINS _Z4_PINS _Z_PROBE \
   _E0_PINS _E1_PINS _E2_PINS _E3_PINS _E4_PINS _E5_PINS _E6_PINS _E7_PINS \
   _H0_PINS _H1_PINS _H2_PINS _H3_PINS _H4_PINS _H5_PINS _H6_PINS _H7_PINS \
-  _PS_ON _HEATER_BED _FAN0 _FAN1 _FAN2 _FAN3 _FAN4 _FAN5 _FAN6 _FAN7 _FANC \
-  _BED_PINS _CHAMBER_PINS HAL_SENSITIVE_PINS \
+  _PS_ON _FAN0 _FAN1 _FAN2 _FAN3 _FAN4 _FAN5 _FAN6 _FAN7 _FANC \
+  _BED_PINS _COOLER _CHAMBER_TEMP _CHAMBER_HEATER _CHAMBER_FAN HAL_SENSITIVE_PINS \
 }
