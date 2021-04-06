@@ -99,16 +99,44 @@
   #endif
   #ifndef Y_MAX_PIN
     #define Y_MAX_PIN                         15
-  #endif
+#endif
 #endif
 #ifndef Z_STOP_PIN
-  #ifndef Z_MIN_PIN
-    #define Z_MIN_PIN                         18
-  #endif
-  #ifndef Z_MAX_PIN
-    #define Z_MAX_PIN                         19
-  #endif
+#ifndef Z_MIN_PIN
+#define Z_MIN_PIN                         18
 #endif
+#ifndef Z_MAX_PIN
+#define Z_MAX_PIN                         19
+#endif
+#endif
+
+#ifndef I_STOP_PIN
+#ifndef I_MIN_PIN
+#define I_MIN_PIN                         18
+#endif
+#ifndef I_MAX_PIN
+#define I_MAX_PIN                         19
+#endif
+#endif
+
+#ifndef J_STOP_PIN
+#ifndef J_MIN_PIN
+#define J_MIN_PIN                         18
+#endif
+#ifndef J_MAX_PIN
+#define J_MAX_PIN                         19
+#endif
+#endif
+
+#ifndef K_STOP_PIN
+#ifndef K_MIN_PIN
+#define K_MIN_PIN                         18
+#endif
+#ifndef K_MAX_PIN
+#define K_MAX_PIN                         19
+#endif
+#endif
+
 
 //
 // Z Probe (when not Z_MIN_PIN)
@@ -123,40 +151,32 @@
 #define X_STEP_PIN                            54
 #define X_DIR_PIN                             55
 #define X_ENABLE_PIN                          38
-#ifndef X_CS_PIN
-  #define X_CS_PIN                            53
-#endif
 
 #define Y_STEP_PIN                            60
 #define Y_DIR_PIN                             61
 #define Y_ENABLE_PIN                          56
-#ifndef Y_CS_PIN
-  #define Y_CS_PIN                            49
-#endif
 
 #ifndef Z_STEP_PIN
   #define Z_STEP_PIN                          46
 #endif
 #define Z_DIR_PIN                             48
 #define Z_ENABLE_PIN                          62
-#ifndef Z_CS_PIN
-  #define Z_CS_PIN                            40
-#endif
 
-#define E0_STEP_PIN                           26
-#define E0_DIR_PIN                            28
-#define E0_ENABLE_PIN                         24
-#ifndef E0_CS_PIN
-  #define E0_CS_PIN                           42
-#endif
+#define E0_STEP_PIN                           49
+#define E0_DIR_PIN                            53
+#define E0_ENABLE_PIN                         64
 
-#define E1_STEP_PIN                           36
-#define E1_DIR_PIN                            34
-#define E1_ENABLE_PIN                         30
-#ifndef E1_CS_PIN
-  #define E1_CS_PIN                           44
-#endif
+#define I_STEP_PIN                           26
+#define I_DIR_PIN                            28
+#define I_ENABLE_PIN                         24
 
+#define J_STEP_PIN                           36
+#define J_DIR_PIN                            34
+#define J_ENABLE_PIN                         30
+
+#define K_STEP_PIN                           40
+#define K_DIR_PIN                            63
+#define K_ENABLE_PIN                         42
 //
 // Temperature Sensors
 //
