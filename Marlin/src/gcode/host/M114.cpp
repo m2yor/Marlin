@@ -16,7 +16,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  */
 
@@ -47,15 +47,14 @@
 
   void report_xyz(const xyz_pos_t &pos, const uint8_t precision=3) {
     char str[12];
-    LOOP_XYZ(a) {
-      SERIAL_CHAR(' ', XYZ_CHAR(a), ':');
+    LOOP_LINEAR(a) {
+      SERIAL_CHAR(' ', axis_codes[a], ':');
       SERIAL_ECHO(dtostrf(pos[a], 1, precision, str));
     }
     SERIAL_EOL();
   }
 
   void report_current_position_detail() {
-
     // Position as sent by G-code
     SERIAL_ECHOPGM("\nLogical:");
     report_xyz(current_position.asLogical());
@@ -81,11 +80,7 @@
 
     #if IS_KINEMATIC
       // Kinematics applied to the leveled position
-      #if IS_SCARA
-        SERIAL_ECHOPGM("ScaraK: ");
-      #else
-        SERIAL_ECHOPGM("DeltaK: ");
-      #endif
+      SERIAL_ECHOPGM(TERN(IS_SCARA, "ScaraK: ", "DeltaK: "));
       inverse_kinematics(leveled);  // writes delta[]
       report_xyz(delta);
     #endif
@@ -130,6 +125,15 @@
       #if AXIS_IS_L64XX(Z4)
         REPORT_ABSOLUTE_POS(Z4);
       #endif
+      #if AXIS_IS_L64XX(I)
+        REPORT_ABSOLUTE_POS(I);
+      #endif
+      #if AXIS_IS_L64XX(J)
+        REPORT_ABSOLUTE_POS(J);
+      #endif
+      #if AXIS_IS_L64XX(K)
+        REPORT_ABSOLUTE_POS(K);
+      #endif
       #if AXIS_IS_L64XX(E0)
         REPORT_ABSOLUTE_POS(E0);
       #endif
@@ -158,7 +162,7 @@
     #endif // HAS_L64XX
 
     SERIAL_ECHOPGM("Stepper:");
-    LOOP_XYZE(i) {
+    LOOP_NUM_AXIS(i) {
       SERIAL_CHAR(' ', axis_codes[i], ':');
       SERIAL_ECHO(stepper.position((AxisEnum)i));
     }
@@ -175,7 +179,10 @@
 
     SERIAL_ECHOPGM("FromStp:");
     get_cartesian_from_steppers();  // writes 'cartes' (with forward kinematics)
-    xyze_pos_t from_steppers = { cartes.x, cartes.y, cartes.z, planner.get_axis_position_mm(E_AXIS) };
+    xyze_pos_t from_steppers = {
+      LIST_N(LINEAR_AXES, cartes.x, cartes.y, cartes.z, planner.get_axis_position_mm.i, planner.get_axis_position_mm.j, planner.get_axis_position_mm.k),
+      planner.get_axis_position_mm(E_AXIS)
+    };
     report_xyze(from_steppers);
 
     const xyze_float_t diff = from_steppers - leveled;

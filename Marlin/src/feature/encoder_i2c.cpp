@@ -16,7 +16,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  */
 
@@ -332,7 +332,7 @@ bool I2CPositionEncoder::test_axis() {
 
   const float startPosition = soft_endstop.min[encoderAxis] + 10,
               endPosition = soft_endstop.max[encoderAxis] - 10;
-  const feedRate_t fr_mm_s = FLOOR(MMM_TO_MMS((encoderAxis == Z_AXIS) ? HOMING_FEEDRATE_Z : HOMING_FEEDRATE_XY));
+  const feedRate_t fr_mm_s = FLOOR(homing_feedrate(encoderAxis));
 
   ec = false;
 
@@ -382,7 +382,7 @@ void I2CPositionEncoder::calibrate_steps_mm(const uint8_t iter) {
 
   int32_t startCount, stopCount;
 
-  const feedRate_t fr_mm_s = MMM_TO_MMS((encoderAxis == Z_AXIS) ? HOMING_FEEDRATE_Z : HOMING_FEEDRATE_XY);
+  const feedRate_t fr_mm_s = homing_feedrate(encoderAxis);
 
   bool oldec = ec;
   ec = false;
@@ -816,7 +816,6 @@ int8_t I2CPositionEncodersMgr::parse() {
  *    Y       Report on Y axis encoder, if present.
  *    Z       Report on Z axis encoder, if present.
  *    E       Report on E axis encoder, if present.
- *
  */
 void I2CPositionEncodersMgr::M860() {
   if (parse()) return;
@@ -824,7 +823,7 @@ void I2CPositionEncodersMgr::M860() {
   const bool hasU = parser.seen('U'), hasO = parser.seen('O');
 
   if (I2CPE_idx == 0xFF) {
-    LOOP_XYZE(i) {
+    LOOP_NUM_AXIS(i) {
       if (!I2CPE_anyaxis || parser.seen(axis_codes[i])) {
         const uint8_t idx = idx_from_axis(AxisEnum(i));
         if ((int8_t)idx >= 0) report_position(idx, hasU, hasO);
@@ -846,13 +845,12 @@ void I2CPositionEncodersMgr::M860() {
  *    Y       Report on Y axis encoder, if present.
  *    Z       Report on Z axis encoder, if present.
  *    E       Report on E axis encoder, if present.
- *
  */
 void I2CPositionEncodersMgr::M861() {
   if (parse()) return;
 
   if (I2CPE_idx == 0xFF) {
-    LOOP_XYZE(i) {
+    LOOP_NUM_AXIS(i) {
       if (!I2CPE_anyaxis || parser.seen(axis_codes[i])) {
         const uint8_t idx = idx_from_axis(AxisEnum(i));
         if ((int8_t)idx >= 0) report_status(idx);
@@ -875,13 +873,12 @@ void I2CPositionEncodersMgr::M861() {
  *    Y       Report on Y axis encoder, if present.
  *    Z       Report on Z axis encoder, if present.
  *    E       Report on E axis encoder, if present.
- *
  */
 void I2CPositionEncodersMgr::M862() {
   if (parse()) return;
 
   if (I2CPE_idx == 0xFF) {
-    LOOP_XYZE(i) {
+    LOOP_NUM_AXIS(i) {
       if (!I2CPE_anyaxis || parser.seen(axis_codes[i])) {
         const uint8_t idx = idx_from_axis(AxisEnum(i));
         if ((int8_t)idx >= 0) test_axis(idx);
@@ -905,7 +902,6 @@ void I2CPositionEncodersMgr::M862() {
  *    Y       Report on Y axis encoder, if present.
  *    Z       Report on Z axis encoder, if present.
  *    E       Report on E axis encoder, if present.
- *
  */
 void I2CPositionEncodersMgr::M863() {
   if (parse()) return;
@@ -913,7 +909,7 @@ void I2CPositionEncodersMgr::M863() {
   const uint8_t iterations = constrain(parser.byteval('P', 1), 1, 10);
 
   if (I2CPE_idx == 0xFF) {
-    LOOP_XYZE(i) {
+    LOOP_NUM_AXIS(i) {
       if (!I2CPE_anyaxis || parser.seen(axis_codes[i])) {
         const uint8_t idx = idx_from_axis(AxisEnum(i));
         if ((int8_t)idx >= 0) calibrate_steps_mm(idx, iterations);
@@ -989,7 +985,7 @@ void I2CPositionEncodersMgr::M865() {
   if (parse()) return;
 
   if (!I2CPE_addr) {
-    LOOP_XYZE(i) {
+    LOOP_NUM_AXIS(i) {
       if (!I2CPE_anyaxis || parser.seen(axis_codes[i])) {
         const uint8_t idx = idx_from_axis(AxisEnum(i));
         if ((int8_t)idx >= 0) report_module_firmware(encoders[idx].get_address());
@@ -1020,7 +1016,7 @@ void I2CPositionEncodersMgr::M866() {
   const bool hasR = parser.seen('R');
 
   if (I2CPE_idx == 0xFF) {
-    LOOP_XYZE(i) {
+    LOOP_NUM_AXIS(i) {
       if (!I2CPE_anyaxis || parser.seen(axis_codes[i])) {
         const uint8_t idx = idx_from_axis(AxisEnum(i));
         if ((int8_t)idx >= 0) {
@@ -1058,7 +1054,7 @@ void I2CPositionEncodersMgr::M867() {
   const int8_t onoff = parser.seenval('S') ? parser.value_int() : -1;
 
   if (I2CPE_idx == 0xFF) {
-    LOOP_XYZE(i) {
+    LOOP_NUM_AXIS(i) {
       if (!I2CPE_anyaxis || parser.seen(axis_codes[i])) {
         const uint8_t idx = idx_from_axis(AxisEnum(i));
         if ((int8_t)idx >= 0) {
@@ -1094,7 +1090,7 @@ void I2CPositionEncodersMgr::M868() {
   const float newThreshold = parser.seenval('T') ? parser.value_float() : -9999;
 
   if (I2CPE_idx == 0xFF) {
-    LOOP_XYZE(i) {
+    LOOP_NUM_AXIS(i) {
       if (!I2CPE_anyaxis || parser.seen(axis_codes[i])) {
         const uint8_t idx = idx_from_axis(AxisEnum(i));
         if ((int8_t)idx >= 0) {
@@ -1128,7 +1124,7 @@ void I2CPositionEncodersMgr::M869() {
   if (parse()) return;
 
   if (I2CPE_idx == 0xFF) {
-    LOOP_XYZE(i) {
+    LOOP_NUM_AXIS(i) {
       if (!I2CPE_anyaxis || parser.seen(axis_codes[i])) {
         const uint8_t idx = idx_from_axis(AxisEnum(i));
         if ((int8_t)idx >= 0) report_error(idx);

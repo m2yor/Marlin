@@ -16,7 +16,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  */
 
@@ -62,11 +62,11 @@ const uint8_t L64XX_Marlin::index_to_dir[MAX_L64XX] = {
   INVERT_X_DIR, INVERT_Y_DIR, INVERT_Z_DIR
   , (INVERT_X_DIR)                            // X2
     #if ENABLED(X_DUAL_STEPPER_DRIVERS)
-      ^ (INVERT_X2_VS_X_DIR)
+      ^ ENABLED(INVERT_X2_VS_X_DIR)
     #endif
   , (INVERT_Y_DIR)                            // Y2
     #if ENABLED(Y_DUAL_STEPPER_DRIVERS)
-      ^ (INVERT_Y2_VS_Y_DIR)
+      ^ ENABLED(INVERT_Y2_VS_Y_DIR)
     #endif
   , INVERT_Z_DIR, INVERT_Z_DIR, INVERT_Z_DIR  // Z2,Z3,Z4
 
@@ -400,7 +400,7 @@ uint8_t L64XX_Marlin::get_user_input(uint8_t &driver_count, L64XX_axis_t axis_in
   }
 
   uint8_t found_displacement = false;
-  LOOP_XYZE(i) if (uint16_t _displacement = parser.intval(axis_codes[i])) {
+  LOOP_NUM_AXIS(i) if (uint16_t _displacement = parser.intval(axis_codes[i])) {
     found_displacement = true;
     displacement = _displacement;
     uint8_t axis_offset = parser.byteval('J');
